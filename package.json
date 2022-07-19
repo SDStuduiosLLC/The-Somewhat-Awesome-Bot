@@ -1,0 +1,22 @@
+{
+  "name": "MBB-Community-Bot",
+  "version": "1.0.0",
+  "main": "src/Bot.ts",
+  "repository": "https://github.com/summerisadev/MBB-Community-Bot.git",
+  "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "discord.js": "^14.0.2",
+    "dotenv": "^16.0.1",
+    "simple-node-logger": "^21.8.12"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "ts-node src/Bot.ts",
+    "watch": "nodemon src/Bot.ts"
+  }
+}
