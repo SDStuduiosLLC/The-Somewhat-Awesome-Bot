@@ -6,6 +6,8 @@ This is the home for the Discord bot that looks after the MBB Gaming Discord!
 
 It's just a simple clone of the repo and a bit of setup!
 
+Please note before starting! If you don't have experience with DiscordJS, TypeScript, the command line, hosting and general developer stuff, this isn't for you. It can take quite a bit of setup to get it working, and I'm **NOT** here to fix any of your issues.
+
 **Step 1** - Clone the repo
 ```bash
 git clone https://github.com/summerisadev/MBB-Community-Bot.git

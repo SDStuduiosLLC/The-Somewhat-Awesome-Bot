@@ -3,3 +3,4 @@ node_modules/
 build/
 /build/
 data/mcb.log
+data/config.ts

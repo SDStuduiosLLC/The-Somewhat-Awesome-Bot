@@ -12,7 +12,7 @@ export default (client: Client): void => {
 
         log.info('Setting slash commands...');
         await client.application.commands.set(Commands, '811971536780132413');
-        log.info('Slash commands successfully set')
+        log.info('Slash commands successfully set');
 
         log.info(`${client.user.tag} connected to Discord Gateway successfully`);
     })
