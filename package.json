@@ -2,12 +2,15 @@
   "name": "MBB-Community-Bot",
   "version": "1.0.0",
   "main": "src/Bot.ts",
-  "repository": "https://github.com/summerisadev/MBB-Community-Bot.git",
+  "repository": "https://github.com/summerisadev/the-somewhat-decent-bot.git",
   "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
+    "better-sqlite3": "^7.6.2",
     "discord.js": "^14.0.2",
     "dotenv": "^16.0.1",
+    "promise-mysql": "^5.2.0",
+    "quick.db": "^9.0.5",
     "simple-node-logger": "^21.8.12",
     "twitter-api-v2": "^1.12.3"
   },

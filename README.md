@@ -1,6 +1,6 @@
-# The MBB Community Bot
+# The Somewhat Decent Bot
 
-This is the home for the Discord bot that looks after the MBB Gaming Discord!
+This is the home for the Discord bot that, I mean does stuff..
 
 ## Installation
 
@@ -10,7 +10,7 @@ Please note before starting! If you don't have experience with DiscordJS, TypeSc
 
 **Step 1** - Clone the repo
 ```bash
-git clone https://github.com/summerisadev/MBB-Community-Bot.git
+git clone https://github.com/summerisadev/the-somewhat-decent-bot.git
 ```
 
 
@@ -21,11 +21,8 @@ yarn install
 
 
 **Step 3** - Change the settings
-```bash
-cp env.example .env
-```
 
-You know, USE THE TEMPLATE
+Goto ```data/config.ts``` and fill in all the fields
 
 
 **Step 4** - Build & Compile

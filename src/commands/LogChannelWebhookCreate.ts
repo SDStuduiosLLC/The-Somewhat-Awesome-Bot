@@ -1,11 +1,13 @@
 import { BaseApplicationCommandData, Client, EmbedBuilder } from "discord.js";
 import { Command } from "../Command";
-// @ts-ignore
-import { config } from '../../data/config'
+import { config } from '../../data/config';
+import { QuickDB } from "quick.db";
 
-export const Ping: Command = {
-    name: "twitterlogin",
-    description: "(For MBB lol) Authenticates you for Twitter stream",
+const db = new QuickDB()
+
+export const LogChannelWebhookCreate: Command = {
+    name: "logchannelwebhookcreate",
+    description: "Creates a webhook connection to the log channel",
     type: 1,
     run: async (client: Client, ctx) => {
         if (ctx.user.id !== "701561771529470074") {
@@ -17,11 +19,13 @@ export const Ping: Command = {
 
         const embed1 = new EmbedBuilder()
             .setColor('NotQuiteBlack')
-            .setTitle('Twitter Authentication')
+            .setTitle('Webhook Creation Success')
+            .setDescription(`Set the webhook channel to <#${config.discord.logChannel}>! If this is not correct, please check the config.`)
+            .setFooter({ text: "MBB Community Bot" })
 
         await ctx.followUp({
             ephemeral: true,
-            embeds: []
+            embeds: [embed1]
         })
     }
 };

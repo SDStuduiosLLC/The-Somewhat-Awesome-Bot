@@ -3,6 +3,7 @@ import { createSimpleLogger } from "simple-node-logger";
 import * as dotenv from 'dotenv';
 import ready from './listeners/ready';
 import interactionCreate from "./listeners/interactionCreate";
+import { config } from '../data/config'
 
 dotenv.config();
 const log = createSimpleLogger('./data/mcb.log');
@@ -16,4 +17,4 @@ const client = new Client({
 ready(client);
 interactionCreate(client);
 
-client.login(process.env.BOT_TOKEN);
+client.login(config.discord.token);
