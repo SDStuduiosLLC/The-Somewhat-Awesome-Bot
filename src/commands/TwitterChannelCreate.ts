@@ -5,9 +5,9 @@ import { QuickDB } from "quick.db";
 
 const db = new QuickDB()
 
-export const LogChannelWebhookCreate: Command = {
-    name: "logchannelwebhookcreate",
-    description: "Creates a webhook connection to the log channel",
+export const TwitterChannelCreate: Command = {
+    name: "linktwitterchannel",
+    description: "Tells the bot where to send",
     type: 1,
     run: async (client: Client, ctx) => {
         if (ctx.user.id !== "701561771529470074") {

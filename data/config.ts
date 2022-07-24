@@ -15,7 +15,9 @@ export const config = {
     twitter: {
         apiKey: "",
         apiSecret: "",
-        bearerToken: ""
+        // These are USER keys. Not app keys, also the Twitter code is very buggy rn so don't rely on it
+        accessKey: "",
+        accessSecret: ""
     },
     mongo: {
         connectionUri: ""
