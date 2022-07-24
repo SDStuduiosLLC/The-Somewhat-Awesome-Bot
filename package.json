@@ -24,6 +24,6 @@
     "start-dev": "ts-node src/Bot.ts",
     "watch-dev": "nodemon src/Bot.ts",
     "build": "tsc",
-    "start-prod": "tsc && node build/Bot.js"
+    "start-prod": "tsc && node build/src/Bot.js"
   }
 }
