@@ -1,6 +1,6 @@
 {
-  "name": "MBB-Community-Bot",
-  "version": "1.0.0",
+  "name": "the-somewhat-decent-bot",
+  "version": "2.1.4",
   "main": "src/Bot.ts",
   "repository": "https://github.com/summerisadev/the-somewhat-decent-bot.git",
   "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
