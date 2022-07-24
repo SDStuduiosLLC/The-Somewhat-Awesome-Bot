@@ -27,7 +27,7 @@ Goto ```data/config.ts``` and fill in all the fields
 
 **Step 4** - Build & Compile
 ```bash
-tsc && yarn run start-prod
+yarn run start-prod
 ```
 
 ## Contributing
