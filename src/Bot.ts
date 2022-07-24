@@ -26,4 +26,4 @@ const client = new Client({
 ready(client);
 interactionCreate(client);
 
-// client.login(config.discord.token);
+client.login(config.discord.token);

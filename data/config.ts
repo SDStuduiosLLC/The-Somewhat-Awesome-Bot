@@ -7,7 +7,7 @@ export const config = {
         botHasAdmin: "Woah! The server admins are treading a dangerous road, I have admin! If my token gets leaked I could cause havoc! Please ask server admins to remove my administrator permissions.\n\nI will also send a message to the log channel if there is one available."
     },
     discord: {
-        token: "",
+        token: "OTk4NjU5Nzg1NjM5NTk2MTEy.GpoT7y.qaPr_wtx94BxLnAQG86BcCTIAjuiI4hbvTY-NM",
         serverId: "",
         logChannel: "",
         staffRole: ""
