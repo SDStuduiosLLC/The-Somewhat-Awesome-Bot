@@ -11,12 +11,11 @@ export const config = {
       "Woah! The server admins are treading a dangerous road, I have admin! If my token gets leaked I could cause havoc! Please ask server admins to remove my administrator permissions.\n\nI will also send a message to the log channel if there is one available.",
   },
   discord: {
-    token:
-      "OTk4NjU5Nzg1NjM5NTk2MTEy.G3yA_m.HdnsFuJAH4ifqJjdjVu9CVfwSXtckhbJiGEpoE",
+    token: "",
     botPrefix: ">",
-    serverId: "964238274581393418",
-    logChannel: "1005191616048418917",
-    staffRole: "964239782202994698",
+    serverId: "",
+    logChannel: "",
+    staffRole: "",
     shardCount: 1, //make sure to use only a plain number, doing "1" will just crash it. also "auto" doesnt work for some reason
   },
   twitter: {
@@ -28,7 +27,6 @@ export const config = {
     accessSecret: "",
   },
   mongo: {
-    connectionUri:
-      "mongodb+srv://mbbadmin:4DSb4t0hedQi003s@cluster0.6igergz.mongodb.net/db?retryWrites=true&w=majority",
+    connectionUri: "",
   },
 };
