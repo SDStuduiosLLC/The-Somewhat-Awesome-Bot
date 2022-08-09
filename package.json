@@ -2,7 +2,7 @@
   "name": "the-somewhat-decent-bot",
   "version": "2.1.4",
   "main": "src/Bot.ts",
-  "repository": "https://github.com/summerisadev/the-somewhat-decent-bot.git",
+  "repository": "https://github.com/summerisadev/the-somewhat-awesome-bot.git",
   "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {

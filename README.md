@@ -1,4 +1,6 @@
-# The Somewhat Decent Bot
+# The Somewhat Awesome Bot
+
+> :exclamation: Docs now avalible! https://summerisadev.github.io/tsdb-docs
 
 This is the home for the Discord bot that, I mean does stuff..
 
@@ -10,7 +12,7 @@ Please note before starting! If you don't have experience with DiscordJS, TypeSc
 
 **Step 1** - Clone the repo
 ```bash
-git clone https://github.com/summerisadev/the-somewhat-decent-bot.git
+git clone https://github.com/summerisadev/the-somewhat-awesome-bot.git
 ```
 
 
