@@ -1,14 +1,15 @@
-import { Client, GatewayIntentBits, Partials } from "discord.js";
+import { Command } from "./Command";
+import { Client, GatewayIntentBits, Partials, Collection } from "discord.js";
 import { createSimpleLogger } from "simple-node-logger";
-import * as dotenv from 'dotenv';
-import ready from './listeners/ready';
-import interactionCreate from "./listeners/interactionCreate";
-import { config } from '../data/config'
+import ready from "./listeners/ready";
+import onMessageCreate from "./listeners/onMessageCreate";
+import { config } from "../data/config";
 // @ts-ignore
 import Twit from "twit";
+import * as figlet from "figlet";
+import * as fs from "fs";
 
-dotenv.config();
-const log = createSimpleLogger('./data/mcb.log');
+const log = createSimpleLogger("./data/mcb.log");
 
 // const T = new Twit({
 //     consumer_key: testConfig.accessToken,
@@ -17,13 +18,54 @@ const log = createSimpleLogger('./data/mcb.log');
 //     access_token_secret: testConfig.apiSecret
 // })
 
-log.info('Starting bot...');
+figlet.text(
+  "TSDB",
+  {
+    font: "Small Keyboard",
+    horizontalLayout: "default",
+    verticalLayout: "default",
+    width: 80,
+    whitespaceBreak: true,
+  },
+  function (err, data) {
+    if (err) {
+      log.warn("Something went wrong...");
+      console.dir(err);
+      return;
+    }
+    console.log(data);
+  }
+);
+
+log.info("Made by summer.#6649 | Please wait for all services to start...");
+log.info("Starting bot...");
 
 const client = new Client({
-    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildMessageTyping,
+    GatewayIntentBits.MessageContent,
+  ],
 });
 
+let commandMap = new Collection();
+
+const commandFiles = fs
+  .readdirSync(`${__dirname}/commands`)
+  .filter((file) => file.endsWith(".js"));
+
+for (const file of commandFiles) {
+  const command = import(`./commands/${file}`);
+  // @ts-expect-error
+  commandMap.set(command.name, command);
+}
+
 ready(client);
-interactionCreate(client);
+// interactionCreate(client);
+onMessageCreate(client, commandMap);
 
 client.login(config.discord.token);

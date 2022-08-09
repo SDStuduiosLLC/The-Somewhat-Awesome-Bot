@@ -4,3 +4,4 @@ build/
 /build/
 data/mcb.log
 testConfig.json
+json.sqlite
