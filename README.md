@@ -4,6 +4,8 @@
 
 This is the home for the Discord bot that, I mean does stuff..
 
+> Do also note, this bot is being designed for MY needs, so I might add things you suggest if I can use them. Feel free to add your own modifications though!
+
 ## Installation
 
 It's just a simple clone of the repo and a bit of setup!
