@@ -8,6 +8,7 @@ import { config } from "../data/config";
 import Twit from "twit";
 import * as figlet from "figlet";
 import * as fs from "fs";
+import Statcord from "statcord.js";
 
 const log = createSimpleLogger("./data/mcb.log");
 
@@ -52,20 +53,26 @@ const client = new Client({
   ],
 });
 
-let commandMap = new Collection();
+const statcord = new Statcord.Client({
+  client,
+  key: config.statcord.apiKey,
+  postCpuStatistics:
+    true /* Whether to post memory statistics or not, defaults to true */,
+  postMemStatistics:
+    true /* Whether to post memory statistics or not, defaults to true */,
+  postNetworkStatistics:
+    true /* Whether to post memory statistics or not, defaults to true */,
+});
 
-const commandFiles = fs
-  .readdirSync(`${__dirname}/commands`)
-  .filter((file) => file.endsWith(".js"));
-
-for (const file of commandFiles) {
-  const command = import(`./commands/${file}`);
-  // @ts-expect-error
-  commandMap.set(command.name, command);
-}
-
-ready(client);
-// interactionCreate(client);
-onMessageCreate(client, commandMap);
+ready(client, statcord);
+onMessageCreate(client, statcord);
 
 client.login(config.discord.token);
+
+statcord.on("post", (status: any) => {
+  // status = false if the post was successful
+  // status = "Error message" or status = Error if there was an error
+  console.log("something");
+  if (!status) log.debug("Successful post");
+  else log.warn(status);
+});

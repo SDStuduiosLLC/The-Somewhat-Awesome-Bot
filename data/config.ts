@@ -12,10 +12,11 @@ export const config = {
   },
   discord: {
     token: "",
-    botPrefix: ">",
+    botPrefix: "",
     serverId: "",
     logChannel: "",
     staffRole: "",
+    botOwners: [""],
     shardCount: 1, //make sure to use only a plain number, doing "1" will just crash it. also "auto" doesnt work for some reason
   },
   twitter: {
@@ -28,5 +29,8 @@ export const config = {
   },
   mongo: {
     connectionUri: "",
+  },
+  statcord: {
+    apiKey: "",
   },
 };

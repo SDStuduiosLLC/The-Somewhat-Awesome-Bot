@@ -10,26 +10,32 @@ import {
 import { createSimpleLogger } from "simple-node-logger";
 // import { Commands } from "../Commands";
 import { config } from "../../data/config";
-import { checkForInfo, linkCommands } from "../Utils";
+import { checkForInfo } from "../Utils";
 import mongoose from "mongoose";
 import { QuickDB } from "quick.db";
 import path from "path";
 import fs from "fs";
+import Statcord from "statcord.js";
+
+const Ping = require("../commands/Ping");
 
 const log = createSimpleLogger("./data/mcb.log");
 log.setLevel("debug"); // set to INFO for production (i mean unless you want lots more info then go aheaad lol)
 
 const db = new QuickDB();
 
-let commandMap1 = new Collection();
+// let commandMap1 = new Collection();
 
-export default (client: Client): void => {
+export default (client: Client, statcord: Statcord.Client): void => {
   client.on("ready", async () => {
     if (!client.user || !client.application) {
       return;
     }
 
     checkForInfo();
+    statcord.autopost();
+
+    console.log(statcord);
 
     // log.info("Setting slash commands...");
     // await client.application.commands.set(Commands, config.discord.serverId);
@@ -76,9 +82,6 @@ export default (client: Client): void => {
         icon_url:
           "https://us-east-1.tixte.net/uploads/cdn2.summerdev.tk/landscape-g729e5666c_1920(1)(2)(1).62becd48b7ee38.80166689.jpg",
       },
-      footer: {
-        text: 'Does some of the info not match? If this is a "custom bot", you may have been scammed!\nMade, devloped and designed by SummerDev Studios',
-      },
     };
 
     // @ts-ignore
@@ -97,49 +100,26 @@ export default (client: Client): void => {
 
     try {
       log.debug("Linking commands...");
-      linkCommandsOld(client);
+      // linkCommandsOld(client);
     } catch (e) {
       log.error("Error linking commands, exiting...");
       process.abort();
     }
   });
-
-  client.on("messageCreate", async (msg: Message) => {
-    if (!msg.content.startsWith(config.discord.botPrefix) || msg.author.bot)
-      return;
-
-    const args = msg.content
-      .slice(config.discord.botPrefix.length)
-      .trim()
-      .split(/ +/);
-    const command = args.shift()?.toLowerCase();
-
-    console.log(`beans ${commandMap1}`);
-    if (!commandMap1.has(command)) return;
-
-    try {
-      commandMap1.get(command);
-    } catch (e) {
-      log.error(e);
-      msg.reply({
-        content: `${config.responses.genericError} - Something went wrong executing that command!`,
-      });
-    }
-  });
 };
 
-function linkCommandsOld(client: Client) {
-  console.log(commandMap1);
-  const dirPath = path.join(__dirname, "..", "commands");
+// function linkCommandsOld(client: Client) {
+//   // // console.log(commandMap1);
+//   // const dirPath = path.join(__dirname, "..", "commands");
 
-  const commandFiles = fs
-    .readdirSync(dirPath)
-    .filter((file) => file.endsWith(".ts"));
+//   // const commandFiles = fs
+//   //   .readdirSync(dirPath)
+//   //   .filter((file) => file.endsWith(".ts"));
 
-  for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    console.log(command);
-    commandMap1.set(command.name, command);
-    console.log(`command map: ${command.name} ${commandMap1}`);
-  }
-}
+//   // for (const file of commandFiles) {
+//   //   const command = require(`./commands/${file}`);
+//   //   console.log(command);
+//   //   // commandMap1.set(command.name, command);
+//   //   // console.log(`command map: ${command.name} ${commandMap1}`);
+//   // }
+// }
