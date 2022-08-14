@@ -1,6 +1,6 @@
 import { config } from "../data/config";
 import { createSimpleLogger } from "simple-node-logger";
-import { Client, Collection } from "discord.js";
+import { Client, Collection, Snowflake } from "discord.js";
 import * as fs from "fs";
 import * as path from "path";
 import { QuickDB } from "quick.db";
@@ -24,4 +24,10 @@ export function checkForInfo() {
   }
 }
 
-export function linkCommands() {}
+export function checkForOwner(authorId: string) {
+  if (!config.discord.botOwners.includes(authorId)) {
+    return true;
+  } else {
+    return false;
+  }
+}
