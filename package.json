@@ -17,6 +17,7 @@
     "promise-mysql": "^5.2.0",
     "quick.db": "^9.0.5",
     "simple-node-logger": "^21.8.12",
+    "statcord.js": "^3.4.3",
     "tslib": "^2.4.0",
     "twit": "^2.2.11"
   },
