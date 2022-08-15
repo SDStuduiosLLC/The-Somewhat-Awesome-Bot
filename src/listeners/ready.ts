@@ -1,31 +1,15 @@
-import {
-  ActivityType,
-  Channel,
-  Client,
-  Collection,
-  GuildBasedChannel,
-  Message,
-  Role,
-  TextChannel,
-} from "discord.js";
+import { ActivityType, Client, Role, TextChannel } from "discord.js";
 import { createSimpleLogger } from "simple-node-logger";
-// import { Commands } from "../Commands";
 import { config } from "../../data/config";
 import { checkForInfo } from "../Utils";
 import mongoose from "mongoose";
 import { QuickDB } from "quick.db";
-import path from "path";
-import fs from "fs";
 import Statcord from "statcord.js";
-
-const Ping = require("../commands/Ping");
 
 const log = createSimpleLogger("./data/mcb.log");
 log.setLevel("debug"); // set to INFO for production (i mean unless you want lots more info then go aheaad lol)
 
 const db = new QuickDB();
-
-// let commandMap1 = new Collection();
 
 export default (client: Client, statcord: Statcord.Client): void => {
   client.on("ready", async () => {
@@ -112,19 +96,3 @@ export default (client: Client, statcord: Statcord.Client): void => {
     }
   });
 };
-
-// function linkCommandsOld(client: Client) {
-//   // // console.log(commandMap1);
-//   // const dirPath = path.join(__dirname, "..", "commands");
-
-//   // const commandFiles = fs
-//   //   .readdirSync(dirPath)
-//   //   .filter((file) => file.endsWith(".ts"));
-
-//   // for (const file of commandFiles) {
-//   //   const command = require(`./commands/${file}`);
-//   //   console.log(command);
-//   //   // commandMap1.set(command.name, command);
-//   //   // console.log(`command map: ${command.name} ${commandMap1}`);
-//   // }
-// }

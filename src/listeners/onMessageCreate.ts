@@ -8,10 +8,8 @@ import {
 } from "discord.js";
 import { config } from "../../data/config";
 import { createSimpleLogger } from "simple-node-logger";
-import * as fs from "fs";
 import { checkForOwner } from "../Utils";
 import { EmbedBuilder } from "@discordjs/builders";
-// import { commandMap } from "../Utils";
 
 const Ping = require("../commands/Ping");
 

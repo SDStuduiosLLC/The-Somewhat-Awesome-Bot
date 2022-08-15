@@ -1,10 +1,6 @@
 import { config } from "../data/config";
 import { createSimpleLogger } from "simple-node-logger";
-import { Client, Collection, Snowflake } from "discord.js";
-import * as fs from "fs";
-import * as path from "path";
 import { QuickDB } from "quick.db";
-import { dir } from "console";
 
 const log = createSimpleLogger("./data/mcb.log");
 const db = new QuickDB();
