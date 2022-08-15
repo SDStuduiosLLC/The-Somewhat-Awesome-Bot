@@ -1,4 +1,5 @@
 import {
+  ActivityType,
   Channel,
   Client,
   Collection,
@@ -54,6 +55,10 @@ export default (client: Client, statcord: Statcord.Client): void => {
     log.debug(`Set log channel to #${logChannel.name} (${logChannel.id})`);
     log.debug(`Set staff role to @${staffRole.name} (${staffRole.id})`);
     log.debug(`Set shard count to ${config.discord.shardCount}`);
+
+    const statusText = "the MBB Discord";
+    client.user.setActivity(statusText, { type: ActivityType.Watching });
+    log.debug(`Set custom status to ${statusText}`);
 
     const logEmbed1 = {
       title: "Status Log",
