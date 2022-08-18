@@ -22,8 +22,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze
-    runs-on: [self-hosted]
+    name: Analyze Code
     permissions:
       actions: read
       contents: read
