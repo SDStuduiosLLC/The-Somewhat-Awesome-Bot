@@ -22,7 +22,8 @@ on:
 
 jobs:
   analyze:
-    name: Analyze Code
+    name: Analyze Code]
+    runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
