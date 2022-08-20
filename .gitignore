@@ -5,4 +5,3 @@ build/
 data/mcb.log
 testConfig.json
 json.sqlite
-data/config.loc.ts
