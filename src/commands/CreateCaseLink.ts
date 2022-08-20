@@ -5,6 +5,7 @@ const modCase = require("../../data/schemas/modCase");
 module.exports = {
   name: "createcaselink",
   description: "Create the base template for a ©CaseLink",
+  isOwner: true,
   async execute(msg: Message, args: Array<String>, client: Client) {
     if (!args[2])
       return msg.reply(

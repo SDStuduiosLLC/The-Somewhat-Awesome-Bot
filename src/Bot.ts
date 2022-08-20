@@ -9,7 +9,7 @@ import Statcord from "statcord.js";
 const log = createSimpleLogger("./data/mcb.log");
 
 figlet.text(
-  "TSDB",
+  "TSAB",
   {
     font: "Small Keyboard",
     horizontalLayout: "default",
