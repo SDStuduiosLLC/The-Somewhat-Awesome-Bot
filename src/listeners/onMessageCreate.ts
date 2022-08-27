@@ -39,6 +39,8 @@ export default (client: Client, statcord: SClient): void => {
     const command = args.shift()?.toLowerCase() as string;
 
     if (commandArray.includes(command)) {
+      msg.channel.sendTyping();
+
       const commandToRun = require(`${commandDir}${command}`);
       if (commandToRun.isOwner || !commandToRun.isOwner === undefined) {
         if (config.discord.botOwners.includes(msg.author.id)) {

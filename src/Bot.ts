@@ -30,6 +30,7 @@ figlet.text(
 log.info("Made by summer.#6649 | Please wait for all services to start...");
 log.info("Starting bot...");
 
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,

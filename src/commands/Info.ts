@@ -1,5 +1,5 @@
 import { config } from "../../data/config"
-import { Embed, Message, Client, EmbedBuilder, Guild, Role } from "discord.js"
+import { Message, Client, EmbedBuilder, Guild, Role } from "discord.js"
 
 module.exports = {
   name: "info",

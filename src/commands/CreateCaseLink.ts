@@ -7,6 +7,8 @@ module.exports = {
   description: "Create the base template for a ©CaseLink",
   isOwner: true,
   async execute(msg: Message, args: Array<String>, client: Client) {
+    return msg.reply('This command is not currently in use.')
+
     if (!args[2])
       return msg.reply(
         `Missing options. Command is: ${config.discord.botPrefix}createcaselink {userID} {actionTaken} {caseNo}`

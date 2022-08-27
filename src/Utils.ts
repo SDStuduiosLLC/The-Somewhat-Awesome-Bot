@@ -27,3 +27,16 @@ export function checkForOwner(authorId: string) {
     return false;
   }
 }
+
+export async function disclaimerCheck(db: QuickDB, table: any) {
+  if (!await table.get('registered') || await table.get('registered') === null || await table.get("registered") === false) {
+    log.info("-----");
+    log.warn("DISCLAIMER: SummerDev Studios & WhizBangPop! do not take responsibility for any loopholes or exploits in commands or internal systems.")
+    log.warn("Any known vulnerabilities in the code we ship will be fixed ASAP, but any code you create, modify and/or delete, is your responsibility.")
+    log.warn("This bot is NOT made to serve multiple guilds, it's only designed to serve 1 guild, so if you use the bot in multiple, things will at some point break.")
+    log.info("-----");
+    log.debug('Disclaimer displayed, registering bot in DB')
+
+    await table.set('registered', true);
+  }
+}

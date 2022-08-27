@@ -1,6 +1,6 @@
 # The Somewhat Awesome Bot
 
-> :exclamation: Docs now avalible! https://summerisadev.github.io/tsdb-docs
+> :exclamation: Docs now avalible! https://tsab-docs.summerdev.tk
 
 This is the home for the Discord bot that, I mean does stuff..
 
