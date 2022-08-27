@@ -10,7 +10,8 @@ import { createSimpleLogger } from "simple-node-logger";
 import { checkForOwner } from "../Utils";
 import { EmbedBuilder } from "@discordjs/builders";
 import fs from "fs";
-import {mem} from "systeminformation";
+// @ts-ignore
+import { AsciiTable3, AlignmentEnum } from "ascii-table3";
 
 // Node logger
 const log = createSimpleLogger("./data/mcb.log");
@@ -25,6 +26,18 @@ fs.readdirSync(commandDir).forEach(file => {
   commandArray.push(file);
   log.info(`Imported Command: ${file}`);
 })
+
+const table = new AsciiTable3('Commands')
+    .setHeading('Name', 'Description', 'MinArgs', 'MaxArgs')
+    .setStyle('unicode-single')
+
+for (let i=0;i<commandArray.length;i++) {
+  const cmdToImport = require(`${commandDir}${commandArray[i]}`);
+  console.log()
+  table.addRow(`${cmdToImport.name}`, cmdToImport.description, cmdToImport.minArgs, cmdToImport.maxArgs)
+}
+
+console.log(table.toString());
 
 export default (client: Client, statcord: SClient): void => {
   // @ts-ignore
