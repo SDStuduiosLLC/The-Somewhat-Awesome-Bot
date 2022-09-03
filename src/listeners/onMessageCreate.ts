@@ -22,6 +22,7 @@ const commandDir: string = `${process.cwd()}/src/commands/`;
 fs.readdirSync(commandDir).forEach(file => {
   file = file.replace(/\..+$/, '');
   file = file.toLowerCase();
+  if (file.startsWith('temp')) return;
   commandArray.push(file);
   log.info(`Imported Command: ${file}`);
 })

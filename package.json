@@ -9,6 +9,7 @@
     "@types/figlet": "^1.5.4",
     "@types/mongoose": "^5.11.97",
     "@types/twit": "^2.2.30",
+    "ascii-table3": "^0.7.7",
     "better-sqlite3": "^7.6.2",
     "discord.js": "^14.0.2",
     "dotenv": "^16.0.1",
