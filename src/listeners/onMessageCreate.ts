@@ -3,7 +3,7 @@ import {
   Client,
   Message,
   TextChannel,
-  PermissionsBitField
+  PermissionsBitField, User
 } from "discord.js";
 import { config } from "../../data/config";
 import { createSimpleLogger } from "simple-node-logger";
@@ -29,13 +29,13 @@ fs.readdirSync(commandDir).forEach(file => {
 })
 
 const table = new AsciiTable3('Commands')
-    .setHeading('Name', 'Description', 'MinArgs', 'MaxArgs')
+    .setHeading('Name', 'Description', 'MinArgs', 'MaxArgs', 'Category')
     .setStyle('unicode-single')
 
 for (let i=0;i<commandArray.length;i++) {
   const cmdToImport = require(`${commandDir}${commandArray[i]}`);
   console.log()
-  table.addRow(`${cmdToImport.name}`, cmdToImport.description, cmdToImport.minArgs, cmdToImport.maxArgs)
+  table.addRow(`${cmdToImport.name}`, cmdToImport.description, cmdToImport.minArgs, cmdToImport.maxArgs, cmdToImport.category)
 }
 
 console.log(table.toString());
@@ -43,8 +43,9 @@ console.log(table.toString());
 export default (client: Client, statcord: SClient): void => {
   // @ts-ignore
   client.on("messageCreate", async (msg: Message) => {
-    if (!msg.content.startsWith(config.discord.botPrefix) || msg.author.bot)
-      return;
+    if (msg.mentions.has(client.user as User)) return msg.reply(`Heyo! My prefix is \`${config.discord.botPrefix}\` - We are working on pinging, just not quite there yet!`)
+    
+    if (!msg.content.startsWith(config.discord.botPrefix) || msg.author.bot) return;
 
     const args = msg.content
       .slice(config.discord.botPrefix.length)

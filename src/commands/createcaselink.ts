@@ -6,6 +6,9 @@ module.exports = {
   name: "createcaselink",
   description: "Create the base template for a ©CaseLink",
   isOwner: true,
+  minArgs: 3,
+  maxArgs: 3,
+  category: 'Moderation',
   async execute(msg: Message, args: Array<String>, client: Client) {
     return msg.reply('This command is not currently in use.')
 

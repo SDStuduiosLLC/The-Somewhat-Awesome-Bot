@@ -4,6 +4,9 @@ import { Message, Client, EmbedBuilder, Guild, Role } from "discord.js"
 module.exports = {
   name: "info",
   description: "Provides info about the bot",
+  minArgs: 0,
+  maxArgs: 0,
+  category: 'Utility',
   async execute(msg: Message, args: Array<string>, client: Client) {
     const linkedServer = client.guilds.cache.get(
       config.discord.serverId

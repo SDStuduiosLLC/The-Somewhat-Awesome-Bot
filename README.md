@@ -41,3 +41,10 @@ Please make sure to update tests as appropriate.
 
 ## License
 [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/)
+
+---
+
+### Quick Note!
+This project was made with JetBrains and GitHub software in mind, and in use. So while you don't need to use either, I would **highly** recommend using them for the best experience. 
+
+And yes, I know JetBrains isn't free, but if you are a student, sign up for the student package! 100% worth it.

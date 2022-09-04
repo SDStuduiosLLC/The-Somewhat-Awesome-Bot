@@ -8,6 +8,7 @@ module.exports = {
     description: "Gives an explanation on what a command does.",
     minArgs: 0,
     maxArgs: 1,
+    category: 'Utility',
     async execute (msg: Message, args: Array<string>, client: Client) {
         const commandArray: Array<string> = [];
         const commandDir: string = `${process.cwd()}/src/commands/`;

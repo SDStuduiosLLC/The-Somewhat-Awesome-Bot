@@ -5,6 +5,7 @@ import onMessageCreate from "./listeners/onMessageCreate";
 import { config } from "../data/config";
 import * as figlet from "figlet";
 import Statcord from "statcord.js";
+import tempListener from "./listeners/customListeners/temp.listener";
 
 const log = createSimpleLogger("./data/mcb.log");
 
@@ -54,7 +55,10 @@ const statcord = new Statcord.Client({
 ready(client, statcord);
 onMessageCreate(client, statcord);
 
-client.login(config.discord.token);
+// Custom Listeners
+tempListener(client)
+
+client.login(config.discord.token).then(r => log.debug('Discord websocket connected!'));
 
 statcord.on("post", (status: any) => {
   if (!status) log.debug("Successful post");
