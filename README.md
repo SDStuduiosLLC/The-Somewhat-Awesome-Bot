@@ -31,7 +31,7 @@ Goto ```data/config.ts``` and fill in all the fields
 
 **Step 4** - Build & Compile
 ```bash
-yarn run start-prod
+node src/Bot.ts
 ```
 
 ## Contributing
