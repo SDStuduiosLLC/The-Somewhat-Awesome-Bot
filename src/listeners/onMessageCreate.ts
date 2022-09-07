@@ -44,7 +44,7 @@ export default (client: Client, statcord: SClient): void => {
   // @ts-ignore
   client.on("messageCreate", async (msg: Message) => {
     if (msg.mentions.has(client.user as User)) return msg.reply(`Heyo! My prefix is \`${config.discord.botPrefix}\` - We are working on pinging, just not quite there yet!`)
-    
+
     if (!msg.content.startsWith(config.discord.botPrefix) || msg.author.bot) return;
 
     const args = msg.content
@@ -57,6 +57,24 @@ export default (client: Client, statcord: SClient): void => {
       msg.channel.sendTyping();
 
       const commandToRun = require(`${commandDir}${command}`);
+
+      let minArgs = commandToRun.minArgs;
+      let maxArgs = commandToRun.maxArgs;
+
+      let commandPattern = commandToRun.commandPattern;
+
+      if (!commandToRun.commandPattern || commandPattern === undefined) {
+        commandPattern = "No pattern found"
+      }
+
+      if (args.length < minArgs) {
+        return msg.reply(`Expected \`${minArgs}\` argument(s). Got \`${args.length}\`. Command pattern is \`${config.discord.botPrefix}${commandPattern}\`.`)
+      }
+
+      if (args.length > maxArgs) {
+        return msg.reply(`Maximum \`${maxArgs}\` argument(s). Got \`${args.length}\`. Command pattern is \`${config.discord.botPrefix}${commandPattern}\`.`)
+      }
+
       if (commandToRun.isOwner || !commandToRun.isOwner === undefined) {
         if (config.discord.botOwners.includes(msg.author.id)) {
           commandToRun.execute(msg, args, client);

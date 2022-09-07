@@ -1,6 +1,7 @@
 import { config } from "../data/config";
 import { createSimpleLogger } from "simple-node-logger";
 import { QuickDB } from "quick.db";
+import {Client, Message} from "discord.js";
 
 const log = createSimpleLogger("./data/mcb.log");
 const db = new QuickDB();
