@@ -42,6 +42,7 @@ console.log(table.toString());
 
 export default (client: Client, statcord: SClient): void => {
   // @ts-ignore
+  // TODO: Add legit fully typed handler with full command interaction
   client.on("messageCreate", async (msg: Message) => {
     if (msg.mentions.has(client.user as User)) return msg.reply(`Heyo! My prefix is \`${config.discord.botPrefix}\` - We are working on pinging, just not quite there yet!`)
 
