@@ -6,3 +6,4 @@ data/mcb.log
 testConfig.json
 json.sqlite
 /src/commands/GauntletInfo.ts
+/src/commands/plugin.ts

@@ -6,6 +6,7 @@ module.exports = {
   description: "Provides info about the bot",
   minArgs: 0,
   maxArgs: 0,
+  commandPattern: "info",
   category: 'Utility',
   async execute(msg: Message, args: Array<string>, client: Client) {
     const linkedServer = client.guilds.cache.get(
