@@ -6,6 +6,7 @@ module.exports = {
   minArgs: 0,
   maxArgs: 0,
   category: 'Utility',
+  slash: true,
   async execute(msg: Message, args: any, client: Client) {
     const content = `API Latency is ${Math.round(client.ws.ping)}ms`;
 

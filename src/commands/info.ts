@@ -7,6 +7,7 @@ module.exports = {
   minArgs: 0,
   maxArgs: 0,
   category: 'Utility',
+  slash: true,
   async execute(msg: Message, args: Array<string>, client: Client) {
     const linkedServer = client.guilds.cache.get(
       config.discord.serverId
