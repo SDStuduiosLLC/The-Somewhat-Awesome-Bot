@@ -13,6 +13,7 @@ export const config = {
   discord: {
     token:
         "",
+    clientId: "",
     botPrefix: "", /** String of the prefix used to trigger the bot. Pinging the bot is a WIP at the moment. */
     serverId: "",
     logChannel: "",
