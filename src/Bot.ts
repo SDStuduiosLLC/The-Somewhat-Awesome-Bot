@@ -6,6 +6,7 @@ import { config } from "../data/config";
 import * as figlet from "figlet";
 import Statcord from "statcord.js";
 import tempListener from "./listeners/customListeners/temp.listener";
+import newCommandHandler from "./listeners/newCommandHandler";
 
 const log = createSimpleLogger("./data/mcb.log");
 
@@ -53,7 +54,8 @@ const statcord = new Statcord.Client({
 });
 
 ready(client, statcord);
-onMessageCreate(client, statcord);
+// onMessageCreate(client, statcord);
+newCommandHandler(client, statcord);
 
 // Custom Listeners
 tempListener(client)

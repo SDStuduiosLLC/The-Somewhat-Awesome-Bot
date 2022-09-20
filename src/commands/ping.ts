@@ -1,4 +1,4 @@
-import { Message, Client } from "discord.js";
+import {Message, Client, MessageInteraction, CommandInteraction} from "discord.js";
 
 module.exports = {
   name: "ping",
@@ -7,9 +7,9 @@ module.exports = {
   maxArgs: 0,
   category: 'Utility',
   slash: true,
-  async execute(msg: Message, args: any, client: Client) {
+  async execute(ctx: CommandInteraction, client: Client) {
     const content = `API Latency is ${Math.round(client.ws.ping)}ms`;
 
-    await msg.reply({ content: content });
+    await ctx.reply({ content: content, ephemeral: true });
   },
 };
