@@ -1,16 +1,18 @@
 {
   "name": "the-somewhat-decent-bot",
   "version": "2.1.4",
-  "main": "src/Bot.ts",
+  "main": "src/theHeart.ts",
   "repository": "https://github.com/summerisadev/the-somewhat-awesome-bot.git",
   "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
+    "@discordjs/rest": "^1.1.0",
     "@types/figlet": "^1.5.4",
     "@types/mongoose": "^5.11.97",
     "@types/twit": "^2.2.30",
     "ascii-table3": "^0.7.7",
     "better-sqlite3": "^7.6.2",
+    "discord-api-types": "^0.37.10",
     "discord.js": "^14.0.2",
     "dotenv": "^16.0.1",
     "figlet": "^1.5.2",
@@ -28,8 +30,8 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "start-dev": "ts-node src/Sharding.ts",
-    "watch-dev": "nodemon src/Bot.ts",
+    "watch-dev": "nodemon src/theHeart.ts",
+    "watch-dev-build": "nodemon build/src/Bot.js",
     "build": "tsc",
     "start-prod": "tsc && node build/src/Sharding.js"
   }

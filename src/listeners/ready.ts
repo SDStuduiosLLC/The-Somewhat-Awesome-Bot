@@ -5,12 +5,15 @@ import {checkForInfo, disclaimerCheck} from "../Utils";
 import mongoose from "mongoose";
 import { QuickDB } from "quick.db";
 import Statcord from "statcord.js";
+import { REST } from '@discordjs/rest';
+import { Routes } from "discord-api-types/v10";
 
 const log = createSimpleLogger("./data/mcb.log");
 log.setLevel("debug"); // set to INFO for production (i mean unless you want lots more info then go ahead lol)
 
 const db = new QuickDB();
 const sysInternals = db.table("sysInt");
+const rest = new REST({ version: '10' }).setToken(config.discord.token);
 
 export default (client: Client, statcord: Statcord.Client): void => {
   client.on("ready", async () => {
@@ -54,6 +57,18 @@ export default (client: Client, statcord: Statcord.Client): void => {
 
     // @ts-ignore
     await logChannel?.send({ embeds: [logEmbed1] });
+
+    // This is just used to make sure I haven't totally messed up - and for reference w/out docs
+    // Might remove on MS1, I'll see
+    try {
+      await rest.post(Routes.channelMessages(config.discord.logChannel), {
+        body: {
+          content: 'Checking API connection.. OK'
+        },
+      });
+    } catch (e) {
+      log.error(e);
+    };
 
     mongoose
       .connect(config.mongo.connectionUri, {

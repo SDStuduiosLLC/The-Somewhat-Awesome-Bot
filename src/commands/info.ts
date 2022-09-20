@@ -1,5 +1,5 @@
 import { config } from "../../data/config"
-import { Message, Client, EmbedBuilder, Guild, Role } from "discord.js"
+import {Message, Client, EmbedBuilder, Guild, Role, CommandInteraction} from "discord.js"
 
 module.exports = {
   name: "info",
@@ -8,7 +8,8 @@ module.exports = {
   maxArgs: 0,
   commandPattern: "info",
   category: 'Utility',
-  async execute(msg: Message, args: Array<string>, client: Client) {
+  slash: true,
+  async execute(ctx: CommandInteraction, client: Client) {
     const linkedServer = client.guilds.cache.get(
       config.discord.serverId
     ) as Guild;
@@ -62,6 +63,6 @@ module.exports = {
           }
       )
 
-    await msg.reply({embeds: [embed]})
+    await ctx.reply({embeds: [embed], ephemeral: true})
   },
 }
