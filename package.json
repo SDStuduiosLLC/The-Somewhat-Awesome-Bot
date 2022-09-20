@@ -1,7 +1,7 @@
 {
   "name": "the-somewhat-decent-bot",
   "version": "2.1.4",
-  "main": "src/Bot.ts",
+  "main": "src/theHeart.ts",
   "repository": "https://github.com/summerisadev/the-somewhat-awesome-bot.git",
   "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
@@ -30,8 +30,8 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "start-dev": "ts-node src/Sharding.ts",
-    "watch-dev": "nodemon src/Bot.ts",
+    "watch-dev": "nodemon src/theHeart.ts",
+    "watch-dev-build": "nodemon build/src/Bot.js",
     "build": "tsc",
     "start-prod": "tsc && node build/src/Sharding.js"
   }
