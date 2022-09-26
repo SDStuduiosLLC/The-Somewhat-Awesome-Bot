@@ -1,13 +1,16 @@
 import { config } from "../../data/config"
-import {Message, Client, EmbedBuilder, Guild, Role, CommandInteraction} from "discord.js"
+import {Message, Client, EmbedBuilder, Guild, Role, CommandInteraction, SlashCommandBuilder} from "discord.js"
 
 module.exports = {
-  name: "info",
-  description: "Provides info about the bot",
-  minArgs: 0,
-  maxArgs: 0,
-  category: 'Utility',
-  slash: true,
+  // name: "info",
+  // description: "Provides info about the bot",
+  // minArgs: 0,
+  // maxArgs: 0,
+  // category: 'Utility',
+  // slash: true,
+  data: new SlashCommandBuilder()
+      .setName('info')
+      .setDescription('Info about TSAB'),
   async execute(ctx: CommandInteraction, client: Client) {
     const linkedServer = client.guilds.cache.get(
       config.discord.serverId

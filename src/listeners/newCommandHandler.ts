@@ -3,9 +3,13 @@ import {Client as SClient} from "statcord.js";
 import fs from'fs';
 import path from 'path';
 import {createSimpleLogger} from "simple-node-logger";
+import {QuickDB} from "quick.db";
+import {webhookReporter} from "../utilities";
 
 const log = createSimpleLogger("./data/mcb.log");
 log.setLevel('debug');
+const db = new QuickDB();
+const sysInternals = db.table("sysInt");
 
 export default (client: Client, statcord: SClient): void => {
     const commands = new Collection();
@@ -20,7 +24,9 @@ export default (client: Client, statcord: SClient): void => {
         file = file.toLowerCase();
 
         const cmd = require(`${commandDir}${file}`);
-        commands.set(cmd.name, cmd)
+
+        if (!cmd.data) return;
+        commands.set(cmd.data.name, cmd)
     })
 
     client.on('interactionCreate', async (ctx) => {
@@ -43,5 +49,9 @@ export default (client: Client, statcord: SClient): void => {
         } else if (ctx.isButton()) {
 
         } else return;
+    })
+
+    client.on('error', async (e) => {
+        await webhookReporter('error', `**Bot Error**\n\n${e.name}\n\n${e.message}`)
     })
 }

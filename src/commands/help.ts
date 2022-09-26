@@ -2,6 +2,7 @@ import { Message, Client, EmbedBuilder } from "discord.js";
 // @ts-ignore
 import { AsciiTable3, AlignmentEnum } from "ascii-table3";
 
+// TODO: Update importer to sperate slash and message commands, as they have very different systems
 
 module.exports = {
     name: "help",

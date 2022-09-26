@@ -23,25 +23,16 @@ fs.readdirSync(commandDir).forEach(file => {
     file = file.toLowerCase();
 
     const cmd = require(`${commandDir}${file}`);
-    if (cmd.slash || cmd.slash === 'both') {
-        commands.push(file);
+    if (cmd.data) {
+        commands.push(cmd.data.toJSON());
+        console.log(cmd)
         log.info(`Imported Slash Command: ${file}`);
     }
 })
 
-rest.get(Routes.applicationGuildCommands(config.discord.clientId, config.discord.serverId))
-    .then((data:any) => {
-       const dscCommands: any = []
-        for (let i=0;i<commands.length;i++) {
-            const cmd = require(`${commandDir}${commands[i]}`)
-            dscCommands.push(new SlashCommandBuilder().setName(commands[i]).setDescription(cmd.description))
-        }
-        // @ts-ignore
-        dscCommands.map(command=>command.toJSON())
+console.log('Syncing commands..')
 
-        rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.serverId), {body: dscCommands})
-            .then((data:any) => log.debug(`Successfully registered ${data.length} application commands.`))
-            .catch(log.error)
-    })
+rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.serverId), {body: commands})
+    .then((data:any) => log.debug(`Successfully registered ${data.length} application commands.`))
     .catch(log.error)
 

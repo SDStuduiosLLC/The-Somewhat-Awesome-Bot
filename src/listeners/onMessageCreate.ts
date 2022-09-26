@@ -7,7 +7,7 @@ import {
 } from "discord.js";
 import { config } from "../../data/config";
 import { createSimpleLogger } from "simple-node-logger";
-import { checkForOwner } from "../Utils";
+import { checkForOwner } from "../utilities";
 import { EmbedBuilder } from "@discordjs/builders";
 import fs from "fs";
 // @ts-ignore
