@@ -25,8 +25,11 @@ export default (client: Client, statcord: SClient): void => {
 
         const cmd = require(`${commandDir}${file}`);
 
-        if (!cmd.data) return;
-        commands.set(cmd.data.name, cmd)
+        if (!cmd.data) {
+
+        } else {
+            commands.set(cmd.data.name, cmd);
+        }
     })
 
     client.on('interactionCreate', async (ctx) => {
@@ -37,18 +40,23 @@ export default (client: Client, statcord: SClient): void => {
             if (!command1) return log.debug('AAAAAAAAAAAAAAAAAAAA COMMAND NOT FOUND');
 
             try {
-                await command1.execute(ctx, client)
+                await command1.execute(ctx, client);
+                return statcord.postCommand(command1, ctx.user.id);
             } catch (e) {
                 log.error(e);
                 await ctx.reply({ content: 'Something broke. Probably as the dev who is hosting this IS USING VERY F**KING MUCH ALPHA SOFTWARE. Go annoy them about it.' })
             }
         } else if (ctx.isContextMenuCommand()) {
-
+            log.info('Context menu logic to be added!')
         } else if (ctx.isSelectMenu()) {
-
+            log.info('Select menu logic to be added!')
         } else if (ctx.isButton()) {
-
+            log.info('Button logic to be added!')
         } else return;
+    })
+
+    client.on('messageCreate', async (msg) => {
+        log.info('Message handling not implimented. Fkn do it!')
     })
 
     client.on('error', async (e) => {
