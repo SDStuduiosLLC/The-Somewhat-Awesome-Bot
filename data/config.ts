@@ -14,25 +14,22 @@ export const config = {
     token:
         "",
     clientId: "",
+    loggingWebhook: "",
     botPrefix: "", /** String of the prefix used to trigger the bot. Pinging the bot is a WIP at the moment. */
     serverId: "",
     logChannel: "",
     staffRole: "",
     botOwners: [""], /** Array of all bot owners. Set index0 as the main owner/server owner, basically the person you want people to contact when it breaks. */
+    messageCommandsEnabled: "",
     shardCount: 1, //make sure to use only a plain number, doing "1" will just crash it. also "auto" doesn't work for some reason
-  },
-  twitter: {
-    apiKey: "",
-    apiSecret: "",
-    bearerToken: "",
-    // These are USER keys. Not app keys, also the Twitter code is very buggy rn so don't rely on it
-    accessKey: "",
-    accessSecret: "",
   },
   mongo: {
     connectionUri: "",
   },
   statcord: {
     apiKey: "",
+  },
+  sentryLogging: {
+    sentryIngestUri: "",
   },
 }
