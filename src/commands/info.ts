@@ -2,12 +2,6 @@ import { config } from "../../data/config"
 import {Message, Client, EmbedBuilder, Guild, Role, CommandInteraction, SlashCommandBuilder} from "discord.js"
 
 module.exports = {
-  // name: "info",
-  // description: "Provides info about the bot",
-  // minArgs: 0,
-  // maxArgs: 0,
-  // category: 'Utility',
-  // slash: true,
   data: new SlashCommandBuilder()
       .setName('info')
       .setDescription('Info about TSAB'),
