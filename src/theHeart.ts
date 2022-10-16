@@ -29,7 +29,7 @@ figlet.text(
   }
 );
 
-log.info("Made by summer.#6649 | Please wait for all services to start...");
+log.info("Built and Maintained by SDS | Please wait for all services to start...");
 log.info("Starting bot...");
 
 

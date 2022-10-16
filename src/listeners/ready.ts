@@ -1,7 +1,7 @@
 import {ActivityType, Client, EmbedBuilder, Role, TextChannel} from "discord.js";
 import { createSimpleLogger } from "simple-node-logger";
 import { config } from "../../data/config";
-import {checkForInfo, disclaimerCheck} from "../Utils";
+import {checkForInfo, disclaimerCheck, webhookReporter} from "../utilities";
 import mongoose from "mongoose";
 import { QuickDB } from "quick.db";
 import Statcord from "statcord.js";
@@ -57,6 +57,8 @@ export default (client: Client, statcord: Statcord.Client): void => {
 
     // @ts-ignore
     await logChannel?.send({ embeds: [logEmbed1] });
+
+    await webhookReporter('info', 'Util module loaded correctly and successfully.')
 
     // This is just used to make sure I haven't totally messed up - and for reference w/out docs
     // Might remove on MS1, I'll see
