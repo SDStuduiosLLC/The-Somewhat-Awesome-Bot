@@ -42,6 +42,20 @@ export async function disclaimerCheck(db: QuickDB, table: any) {
   }
 }
 
+/** */
+export async function customLogger(mode: string, user: string) {
+  switch (mode) {
+    case "botOwnerCommandError":
+      return console.log(`CMD HANDLER >> ${user} attempted to run a bot owner command.`);
+
+    case "botNoPermissionError":
+      return console.log(`CMD HANDLER >> ${user} attempted to run a command, for which they lack permissions.`);
+
+    default:
+      return;
+  }
+}
+
 /**
  * Report different logs to a designated Discord webhook
  * @param {string} mode - What type of log will be sent. debug, info, warn, error, note

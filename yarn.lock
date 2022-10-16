@@ -211,7 +211,7 @@ arg@^4.1.0:
 
 ascii-table3@^0.7.7:
   version "0.7.7"
-  resolved "https://registry.yarnpkg.com/ascii-table3/-/ascii-table3-0.7.7.tgz#e687ef7fbf13fdbc7c17bdc64ef5818bf92ade8d"
+  resolved "https://registry.npmjs.org/ascii-table3/-/ascii-table3-0.7.7.tgz#e687ef7fbf13fdbc7c17bdc64ef5818bf92ade8d"
   integrity sha512-uCJ8i0aR2cXPi/bcjCdrFlTAKD5+Bs3nZ1yQXItAt1MnlfLXomy418u/iphxOKDJ3pts1ebvtpFrzG+0WRZ6Vg==
   dependencies:
     printable-characters "^1.0.42"
