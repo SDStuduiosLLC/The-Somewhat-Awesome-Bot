@@ -1,5 +1,5 @@
 import {REST} from '@discordjs/rest';
-import {config} from "../../data/config";
+import {config} from "../../../data/config";
 import {Client,SlashCommandBuilder,Routes} from "discord.js";
 import {createSimpleLogger} from "simple-node-logger";
 import {QuickDB} from "quick.db";

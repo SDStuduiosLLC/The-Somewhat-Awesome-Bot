@@ -1,5 +1,5 @@
 import {REST} from '@discordjs/rest';
-import {config} from "../../data/config";
+import {config} from "../../../data/config";
 import {Client,SlashCommandBuilder,Routes} from "discord.js";
 import {createSimpleLogger} from "simple-node-logger";
 import {QuickDB} from "quick.db";
@@ -10,11 +10,9 @@ log.setLevel('debug');
 const db = new QuickDB();
 const sysInternals = db.table("sysInt");
 
-log.info('Manually syncing selected commands...')
-const commands = [
-    new SlashCommandBuilder().setName('ping').setDescription("Replies with system latency"),
-].map(command=>command.toJSON());
+log.info('Starting deletion...')
+const commands: never[] = []
 
 rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.serverId), {body: commands})
-    .then((data:any) => log.debug(`Successfully registered ${data.length} application commands.`))
+    .then((data:any) => log.debug(`Successfully deleted all commands.`))
     .catch(log.error)
