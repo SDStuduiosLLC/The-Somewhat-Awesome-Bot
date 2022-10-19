@@ -23,7 +23,7 @@ jobs:
       - name: Install Packages
         uses: CultureHQ/actions-yarn@master
         with:
-          args: install
+          args: install --ignore-engines
           
       - name: Build Typescript
         uses: iCrawl/action-tsc@v1
