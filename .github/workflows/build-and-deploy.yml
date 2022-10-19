@@ -29,12 +29,12 @@ jobs:
         uses: iCrawl/action-tsc@v1
       
       - name: ZIP Build Contents
-      - uses: montudor/action-zip@v1
+        uses: montudor/action-zip@v1
         with:
           args: zip -qq -r tsab-build.zip build
 
       - name: Generate New GitHub Release
-      - uses: "marvinpinto/action-automatic-releases@latest"
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
