@@ -1,7 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import { createSimpleLogger } from "simple-node-logger";
 import ready from "./listeners/ready";
-import onMessageCreate from "./listeners/onMessageCreate";
 import { config } from "../data/config";
 import * as figlet from "figlet";
 import Statcord from "statcord.js";
@@ -60,9 +59,20 @@ newCommandHandler(client, statcord);
 // Custom Listeners
 tempListener(client)
 
-client.login(config.discord.token).then(r => log.debug('Discord websocket connected!'));
+
+try {
+    client.login(config.discord.token).then(r => {
+        log.debug('Discord websocket connected!')
+    });
+} catch (e) {
+    log.warn('Error when connecting to Discord Gateway')
+}
 
 statcord.on("post", (status: any) => {
-  if (!status) log.debug("Successful post");
-  else log.warn(status);
+  if (!status) {
+      log.debug("Successful post");
+  }
+  else {
+      log.warn(status)
+  };
 });

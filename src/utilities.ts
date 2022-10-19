@@ -46,6 +46,7 @@ export async function disclaimerCheck(db: QuickDB, table: any) {
 export async function customLogger(mode: string, user: string) {
   switch (mode) {
     case "botOwnerCommandError":
+      // Sentry.captureMessage(`PERMISSIONS >> ${user} attempted to run a bot owner command.`)
       return console.log(`CMD HANDLER >> ${user} attempted to run a bot owner command.`);
 
     case "botNoPermissionError":
