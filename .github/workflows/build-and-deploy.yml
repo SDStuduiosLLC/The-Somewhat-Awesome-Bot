@@ -1,0 +1,33 @@
+---
+name: "create-release"
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  create-release:
+    name: "Create Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: "actions/setup-node@v3.5.1"
+        with:
+          check-latest: true
+          
+      - run: tsc --build
+      
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r tsab-build.zip build
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "TSAB Build"
+          files: |
+            LICENSE.txt
+            tsab-build.zip
