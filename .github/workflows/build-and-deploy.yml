@@ -19,7 +19,12 @@ jobs:
         with:
           check-latest: true
           
-      - name: tsc
+      - name: Install Packages
+        uses: CultureHQ/actions-yarn@master
+        with:
+          args: install
+          
+      - name: Build Typescript
         uses: iCrawl/action-tsc@v1
         with:
           build: build/
