@@ -31,7 +31,7 @@ jobs:
       - name: ZIP Build Contents
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r tsab-build.zip . -i build
+          args: zip -r tsab-build.zip build
 
       - name: Generate New GitHub Release
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -39,7 +39,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: true
-          title: "TSAB Build"
+          title: "TSAB Development Build"
           files: |
             LICENSE.txt
             tsab-build.zip
