@@ -18,6 +18,7 @@ jobs:
         uses: "actions/setup-node@v3.5.1"
         with:
           check-latest: true
+          node-version: '16'
           
       - name: Install Packages
         uses: CultureHQ/actions-yarn@master
