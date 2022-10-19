@@ -26,7 +26,9 @@ jobs:
           args: install --ignore-engines
           
       - name: Build Typescript
-        uses: iCrawl/action-tsc@v1
+        uses: alexthemaster/action-build-typescript@v1.3.1
+        with:
+          branch: 'build'
         
       - name: List All Files In Root
         run: ls -la
@@ -34,7 +36,7 @@ jobs:
       - name: ZIP Build Contents
         uses: montudor/action-zip@v1
         with:
-          args: zip -r tsab-build.zip build
+          args: zip -r tsab-build.zip . -i build
 
       - name: Generate New GitHub Release
         uses: "marvinpinto/action-automatic-releases@latest"
