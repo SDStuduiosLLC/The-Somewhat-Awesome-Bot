@@ -1,5 +1,5 @@
 ---
-name: "create-release"
+name: "Generate Release"
 
 on:
   push:
@@ -45,14 +45,5 @@ jobs:
           files: |
             LICENSE
             tsab-build.zip
-                        
-  notify:
-    name: "Discord Notification"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - uses: fateyan/action-discord-notifier@v1
-        with:
-          message-title: New Dev Build Released
-          webhook: ${{ secrets.TSAB_DISCORD_WEBHOOK }}
+            package.json
+            yarn.lock
