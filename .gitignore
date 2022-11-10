@@ -9,3 +9,4 @@ json.sqlite
 /src/commands/plugin.ts
 .idea/
 .fleet/
+data/config.ts
