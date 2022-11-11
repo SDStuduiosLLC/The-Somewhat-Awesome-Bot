@@ -10,9 +10,8 @@ import newCommandHandler from "./listeners/newCommandHandler";
 const log = createSimpleLogger("./data/mcb.log");
 
 figlet.text(
-  "TSAB",
+  "TSAB Framework",
   {
-    font: "Small Keyboard",
     horizontalLayout: "default",
     verticalLayout: "default",
     width: 80,
@@ -53,7 +52,6 @@ const statcord = new Statcord.Client({
 });
 
 ready(client, statcord);
-// onMessageCreate(client, statcord);
 newCommandHandler(client, statcord);
 
 // Custom Listeners
