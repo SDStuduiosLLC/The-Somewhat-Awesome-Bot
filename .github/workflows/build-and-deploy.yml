@@ -24,6 +24,12 @@ jobs:
         uses: CultureHQ/actions-yarn@master
         with:
           args: install --ignore-engines
+
+      - uses: 1arp/create-a-file-action@0.2
+        with:
+          path: 'data/'
+          file: 'config.ts'
+          content: "export const config = {// to the dev who decided use this - download the latest config.example.ts file, update it and run npm run build}"
           
       - name: Build Typescript
         uses: alexthemaster/action-build-typescript@v1.3.1
