@@ -21,6 +21,10 @@ export function checkForInfo() {
   }
 }
 
+/**
+ * Module to check if user id provided is in the owner array.
+ * @param {Number} authorId - User id of message author
+ */
 export function checkForOwner(authorId: string) {
   if (!config.discord.botOwners.includes(authorId)) {
     return true;
@@ -29,6 +33,11 @@ export function checkForOwner(authorId: string) {
   }
 }
 
+/**
+ * Checks the local database to see if the disclaimer has been displayed. Possibly going to be removed.
+ * @param {QuickDB} db - QuickDB database object
+ * @param {any} table - QuickDB table object
+ */
 export async function disclaimerCheck(db: QuickDB, table: any) {
   if (!await table.get('registered') || await table.get('registered') === null || await table.get("registered") === false) {
     log.info("-----");
@@ -42,11 +51,14 @@ export async function disclaimerCheck(db: QuickDB, table: any) {
   }
 }
 
-/** */
+/** *
+ * Custom logger module, to be merged with newer WebHook module
+ * @param {string} mode - Type of log to output
+ * @param {Number} user - User id of message author
+ */
 export async function customLogger(mode: string, user: string) {
   switch (mode) {
     case "botOwnerCommandError":
-      // Sentry.captureMessage(`PERMISSIONS >> ${user} attempted to run a bot owner command.`)
       return console.log(`CMD HANDLER >> ${user} attempted to run a bot owner command.`);
 
     case "botNoPermissionError":

@@ -35,6 +35,7 @@
     "watch-dev": "nodemon src/theHeart.ts",
     "watch-dev-build": "nodemon build/src/Bot.js",
     "build": "tsc",
-    "start-prod": "tsc && node build/src/Sharding.js"
+    "start-prod": "tsc && node build/src/Sharding.js",
+    "build-docs": "tsc && jsdoc build/src"
   }
 }
