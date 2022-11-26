@@ -25,7 +25,7 @@ function getLogFile() {
   if (!fs.existsSync(`${filePath}`)) {
     fs.writeFile(
       filePath,
-      "TSAB LOGGER.\nAUTOMATICALLY GENERATED FILE. DO NOT EDIT OR DELETE.",
+      "TSAB LOGGER.\nAUTOMATICALLY GENERATED FILE. DO NOT EDIT OR DELETE.\n",
       (err) => {
         if (err) throw err
         debug("Created TSAB log file")
