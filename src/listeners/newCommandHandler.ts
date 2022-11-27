@@ -7,8 +7,9 @@ import { QuickDB } from "quick.db"
 import { webhookReporter } from "../utilities"
 import { config } from "../../data/config"
 
-const log = createSimpleLogger("./data/mcb.log")
-log.setLevel("debug")
+// const log = createSimpleLogger("./data/mcb.log")
+// log.setLevel("debug")
+import { debug, log, warn, error } from "../lib/tsabLogger"
 const db = new QuickDB()
 const sysInternals = db.table("sysInt")
 
@@ -29,10 +30,10 @@ export default (client: Client, statcord: SClient): void => {
 
     if (!cmd.data) {
       messageCommandsMap.set(cmd.name, cmd)
-      log.info(`Imported Message Command: ${cmd.name}`)
+      log(`Imported Message Command: ${cmd.name}`)
     } else {
       slashCommandsMap.set(cmd.data.name, cmd)
-      log.info(`Imported Command: ${cmd.data.name}`)
+      log(`Imported Command: ${cmd.data.name}`)
     }
   })
 
@@ -41,28 +42,27 @@ export default (client: Client, statcord: SClient): void => {
       const { commandName } = ctx
       // @ts-ignore
       const command1: any = slashCommandsMap.get(ctx.commandName)
-      if (!command1) return log.debug("AAAAAAAAAAAAAAAAAAAA COMMAND NOT FOUND")
+      if (!command1) return debug("AAAAAAAAAAAAAAAAAAAA COMMAND NOT FOUND")
 
       try {
         await command1.execute(ctx, client)
         return statcord.postCommand(command1, ctx.user.id)
-      } catch (e) {
-        log.error(e)
+      } catch (e: any) {
+        error(e)
         await ctx.reply({
           content: `Something went wrong trying to execute that command. Please contact <@${config.discord.botOwners[0]}> about this.`,
         })
       }
     } else if (ctx.isContextMenuCommand()) {
-      log.info("Context menu logic to be added!")
+      log("Context menu logic to be added!")
     } else if (ctx.isSelectMenu()) {
-      log.info("Select menu logic to be added!")
+      log("Select menu logic to be added!")
     } else if (ctx.isButton()) {
       console.log(ctx)
     } else return
   })
 
   client.on("messageCreate", async (msg) => {
-    //    TODO: add message command handling
     if (!config.discord.messageCommandsEnabled) return
     if (!msg.content.startsWith(config.discord.botPrefix) || msg.author.bot)
       return
@@ -137,6 +137,8 @@ export default (client: Client, statcord: SClient): void => {
   })
 
   client.on("error", async (e) => {
-    await webhookReporter("error", `**Bot Error**\n\n${e.name}\n\n${e.message}`)
+    await error(`${e.name}\n${e.message}`, {
+      sendWebhook: true,
+    })
   })
 }
