@@ -4,7 +4,7 @@ import { config } from "../../data/config"
 import moment from "moment"
 import chalk from "chalk"
 import fs from "fs"
-import { EmbedBuilder, WebhookClient } from "discord.js"
+import { EmbedBuilder, Webhook, WebhookClient } from "discord.js"
 
 /**
  * Checks if a log file exists. Returns the path, and creates one if required.
@@ -25,7 +25,7 @@ function getLogFile() {
   if (!fs.existsSync(`${filePath}`)) {
     fs.writeFile(
       filePath,
-      "TSAB LOGGER.\nAUTOMATICALLY GENERATED FILE. DO NOT EDIT OR DELETE.\n",
+      "TSAB LOGGER FILE. AUTOMATICALLY GENERATED FILE. DO NOT EDIT OR DELETE.\n",
       (err) => {
         if (err) throw err
         debug("Created TSAB log file")
@@ -52,12 +52,18 @@ interface OptionsInt {
  */
 export async function debug(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
-  const localmessage = `${moment().format()} ${chalk.grey(
+  const localmessage = `${moment().format()} ${chalk.white(
     "DEBUG"
   )} | ${chalk.white(message)}\n`
 
-  process.stdout.write(`${localmessage}`)
-  fs.appendFile(getLogFile(), localmessage, (err) => console.error(err))
+  process.stdout.write(
+    `${moment().format()} ${chalk.white("DEBUG")} | ${chalk.white(message)}\n`
+  )
+  fs.appendFile(
+    getLogFile(),
+    `${moment().format()} DEBUG | ${message}`,
+    (err) => console.error(err)
+  )
 
   if (sendWebhook) {
     webhookReporter("debug", message)
@@ -74,8 +80,12 @@ export async function log(message: string, options?: OptionsInt) {
     "LOG"
   )} | ${chalk.white(message)}\n`
 
-  process.stdout.write(`${localmessage}`)
-  fs.appendFile(getLogFile(), localmessage, (err) => console.error(err))
+  process.stdout.write(
+    `${moment().format()} ${chalk.green("LOG")} | ${chalk.white(message)}\n`
+  )
+  fs.appendFile(getLogFile(), `${moment().format()} LOG | ${message}`, (err) =>
+    console.error(err)
+  )
 
   if (sendWebhook) {
     webhookReporter("info", message)
@@ -92,8 +102,14 @@ export async function warn(message: string, options?: OptionsInt) {
     "WARN"
   )} | ${chalk.white(message)}\n`
 
-  process.stdout.write(`${localmessage}`)
-  fs.appendFile(getLogFile(), localmessage, (err) => console.error(err))
+  process.stdout.write(
+    `${moment().format()} ${chalk.yellow("WARN")} | ${chalk.white(message)}\n`
+  )
+  fs.appendFile(
+    getLogFile(),
+    `${moment().format()} "WARN" | ${message}\n`,
+    (err) => console.error(err)
+  )
 
   if (sendWebhook) {
     webhookReporter("warn", message)
@@ -110,14 +126,28 @@ export async function error(message: string, options?: OptionsInt) {
     "ERROR"
   )} | ${chalk.grey(message)}\n`
 
-  process.stdout.write(`${localmessage}`)
-  fs.appendFile(getLogFile(), localmessage, (err) => console.error(err))
+  process.stdout.write(
+    `${moment().format()} ${chalk.redBright("ERROR")} | ${chalk.grey(
+      message
+    )}\n`
+  )
+  fs.appendFile(
+    getLogFile(),
+    `${moment().format()} ERROR | ${message}`,
+    (err) => console.error(err)
+  )
 
   if (sendWebhook) {
     webhookReporter("error", message)
   }
 }
 
+/**
+ * Custom webhook logger module
+ * @param {string} mode
+ * @param {string} text
+ * @returns {Webhook}
+ */
 async function webhookReporter(mode: string, text: string) {
   if (!config.tsabLoggerSetting.loggingWebhook) {
     return console.error("No webhook found! Check your config!")
