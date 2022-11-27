@@ -10,3 +10,5 @@ json.sqlite
 .idea/
 .fleet/
 data/config.ts
+out/
+data/tsab.log
