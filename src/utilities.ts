@@ -2,8 +2,7 @@ import { config } from "../data/config"
 import { createSimpleLogger } from "simple-node-logger"
 import { QuickDB } from "quick.db"
 import { EmbedBuilder, WebhookClient } from "discord.js"
-
-const log = createSimpleLogger("./data/mcb.log")
+import { debug,log,warn,error } from "./lib/tsabLogger"
 const db = new QuickDB()
 
 /**
@@ -11,16 +10,16 @@ const db = new QuickDB()
  */
 export function checkForInfo() {
   if (!config.discord.serverId) {
-    log.error("No server specified, exit to prevent further errors...")
+    error("No server specified, exit to prevent further errors...")
     return process.exit()
   } else if (!config.discord.logChannel) {
-    log.error("No log channel, exit to prevent further errors...")
+    error("No log channel, exit to prevent further errors...")
     return process.exit()
   } else if (!config.discord.staffRole) {
-    log.error("No staff role, exit to prevent further errors...")
+    error("No staff role, exit to prevent further errors...")
     return process.exit()
   } else {
-    return log.debug("All checks passed, starting bot..")
+    return debug("All checks passed, starting bot..")
   }
 }
 
@@ -47,18 +46,18 @@ export async function disclaimerCheck(db: QuickDB, table: any) {
     (await table.get("registered")) === null ||
     (await table.get("registered")) === false
   ) {
-    log.info("-----")
-    log.warn(
+    log("-----")
+    warn(
       "DISCLAIMER: SDS do not take responsibility for any loopholes or exploits in commands or internal systems."
     )
-    log.warn(
+    warn(
       "Any known vulnerabilities in the code we ship will be fixed ASAP, but any code you create, modify and/or delete, is your responsibility."
     )
-    log.warn(
+    warn(
       "This bot is NOT made to serve multiple guilds, it's only designed to serve 1 guild, so if you use the bot in multiple, things will at some point break."
     )
-    log.info("-----")
-    log.debug("Disclaimer displayed, registering bot in DB")
+    log("-----")
+    debug("Disclaimer displayed, registering bot in DB")
 
     await table.set("registered", true)
   }
@@ -88,12 +87,12 @@ export async function customLogger(mode: string, user: string) {
 
 /**
  * Report different logs to a designated Discord webhook
- * @param {string} mode - What type of log will be sent. debug, info, warn, error, note
+ * @param {string} mode - What type of log will be sent. debug, log, warn, error, note
  * @param {string} text - Text to be sent along with the embed.
  * @return {object} webhook - Returns a DiscordJS Webhook object */
 export async function webhookReporter(mode: string, text: string) {
   if (!config.tsabLoggerSetting.loggingWebhook) {
-    return log.error("No webhook found! Check your config!")
+    return error("No webhook found! Check your config!")
   }
 
   const whClient = new WebhookClient({
@@ -152,6 +151,6 @@ export async function webhookReporter(mode: string, text: string) {
       return await whClient.send({ embeds: [noteEmbed] })
 
     default:
-      return log.warn("Not a correct log type!")
+      return warn("Not a valid log type!")
   }
 }

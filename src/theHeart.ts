@@ -6,8 +6,7 @@ import * as figlet from "figlet";
 import Statcord from "statcord.js";
 import tempListener from "./listeners/customListeners/temp.listener";
 import newCommandHandler from "./listeners/newCommandHandler";
-
-const log = createSimpleLogger("./data/mcb.log");
+import { debug,log,warn,error } from './lib/tsabLogger'
 
 figlet.text(
   "TSAB Framework",
@@ -19,7 +18,7 @@ figlet.text(
   },
   function (err, data) {
     if (err) {
-      log.warn("Something went wrong...");
+      warn("Something went wrong...");
       console.dir(err);
       return;
     }
@@ -27,8 +26,8 @@ figlet.text(
   }
 );
 
-log.info("Built and Maintained by SDS | Please wait for all services to start...");
-log.info("Starting bot...");
+log("Built and Maintained by SDS | Please wait for all services to start...");
+log("Starting bot...");
 
 
 const client = new Client({
@@ -60,17 +59,17 @@ tempListener(client)
 
 try {
     client.login(config.discord.token).then(r => {
-        log.debug('Discord websocket connected!')
+        debug('Discord websocket connected!')
     });
 } catch (e) {
-    log.warn('Error when connecting to Discord Gateway')
+    warn('Error when connecting to Discord Gateway', { sendWebhook: true })
 }
 
 statcord.on("post", (status: any) => {
   if (!status) {
-      log.debug("Successful post");
+      debug("Successful post");
   }
   else {
-      log.warn(status)
+      warn(status, { sendWebhook:true })
   };
 });

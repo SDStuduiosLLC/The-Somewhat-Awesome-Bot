@@ -14,7 +14,7 @@ import fs from "fs";
 import { AsciiTable3, AlignmentEnum } from "ascii-table3";
 
 // Node logger
-const log = createSimpleLogger("./data/mcb.log");
+import { debug,log,error } from '../lib/tsabLogger';
 
 // Automatic command importer
 const commandArray: Array<string> = [];
@@ -25,7 +25,7 @@ fs.readdirSync(commandDir).forEach(file => {
   file = file.toLowerCase();
   if (file.startsWith('temp')) return;
   commandArray.push(file);
-  log.info(`Imported Command: ${file}`);
+  log(`Imported Command: ${file}`);
 })
 
 const table = new AsciiTable3('Commands')
@@ -95,7 +95,7 @@ export default (client: Client, statcord: SClient): void => {
           if (!member!.permissions.has(`${commandToRun.requiredPermissions[i]}`)) return msg.reply(config.responses.noPermission);
         }
 
-        log.info('Special command run!')
+        log('Special command run!')
         commandToRun.execute(msg, args, client);
         return statcord.postCommand(command, msg.author.id);
       } else {
@@ -111,7 +111,7 @@ export default (client: Client, statcord: SClient): void => {
     }
   });
 
-  client.on('error', async (error) => {
-    log.error(`OH F**K SOMETHING REALLY REALLY WENT WRONG. HERE'S THE RUNDOWN: \n\n${error}`)
+  client.on('error', async (e) => {
+    error(`SOMETHING REALLY REALLY WENT WRONG. HERE'S THE RUNDOWN: \n\n\`${e}\``, { sendWebhook:true })
   })
 };
