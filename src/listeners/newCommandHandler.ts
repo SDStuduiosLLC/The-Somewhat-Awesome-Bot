@@ -52,12 +52,6 @@ export default (client: Client, statcord: SClient): void => {
           content: `Something went wrong trying to execute that command. Please contact <@${config.discord.botOwners[0]}> about this.`,
         })
       }
-    } else if (ctx.isContextMenuCommand()) {
-      log("Context menu logic to be added!")
-    } else if (ctx.isSelectMenu()) {
-      log("Select menu logic to be added!")
-    } else if (ctx.isButton()) {
-      console.log(ctx)
     } else return
   })
 
