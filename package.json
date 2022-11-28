@@ -13,7 +13,7 @@
     "better-sqlite3": "^7.6.2",
     "chalk": "^4.1.2",
     "cli-interact": "^0.1.9",
-    "discord-api-types": "^0.37.10",
+    "discord-api-types": "^0.37.17",
     "discord.js": "^14.0.2",
     "dotenv": "^16.0.3",
     "figlet": "^1.5.2",
