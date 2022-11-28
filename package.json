@@ -18,7 +18,7 @@
     "dotenv": "^16.0.3",
     "figlet": "^1.5.2",
     "moment": "^2.29.4",
-    "mongoose": "^6.5.1",
+    "mongoose": "^6.7.2",
     "nanospinner": "^1.1.0",
     "promise-mysql": "^5.2.0",
     "quick.db": "^9.0.5",
