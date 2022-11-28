@@ -14,8 +14,7 @@ import Statcord from "statcord.js"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v10"
 
-const log = createSimpleLogger("./data/mcb.log")
-log.setLevel("debug") // set to INFO for production (i mean unless you want lots more info then go ahead lol)
+import { debug,log,error } from '../lib/tsabLogger';
 
 const db = new QuickDB()
 const sysInternals = db.table("sysInt")
@@ -32,7 +31,7 @@ export default (client: Client, statcord: Statcord.Client): void => {
     checkForInfo()
     await statcord.autopost()
 
-    log.info(`${client.user.tag} connected to Discord Gateway successfully`)
+    log(`${client.user.tag} connected to Discord Gateway successfully`)
 
     const guild = client.guilds.cache.get(config.discord.serverId)
     const logChannel = guild?.channels.cache.get(
@@ -41,14 +40,13 @@ export default (client: Client, statcord: Statcord.Client): void => {
     const staffRole = guild?.roles.cache.get(config.discord.staffRole) as Role
 
     // Log config info
-    log.debug(`Set guild to ${guild?.name} (${guild?.id})`)
-    log.debug(`Set log channel to #${logChannel.name} (${logChannel.id})`)
-    log.debug(`Set staff role to @${staffRole.name} (${staffRole.id})`)
-    log.debug(`Set shard count to ${config.discord.shardCount}`)
+    debug(`Set guild to ${guild?.name} (${guild?.id})`)
+    debug(`Set log channel to #${logChannel.name} (${logChannel.id})`)
+    debug(`Set staff role to @${staffRole.name} (${staffRole.id})`)
 
-    const statusText = "summer do the dev shuffle"
+    const statusText = "the suffering of humanity"
     client.user.setActivity(statusText, { type: ActivityType.Watching })
-    log.debug(`Set custom status to ${statusText}`)
+    debug(`Set custom status to ${statusText}`, { sendWebhook:true })
 
     const logEmbed1 = new EmbedBuilder()
       .setTitle("Status Log")
@@ -78,8 +76,8 @@ export default (client: Client, statcord: Statcord.Client): void => {
           content: "Checking API connection.. OK",
         },
       })
-    } catch (e) {
-      log.error(e)
+    } catch (e:any) {
+      error(`\`${e}\``, { sendWebhook:true })
     }
 
     mongoose
@@ -87,17 +85,17 @@ export default (client: Client, statcord: Statcord.Client): void => {
         keepAlive: true,
       })
       .then(() => {
-        log.info("Connected to MongoDB database...")
+        log("Connected to MongoDB database...")
       })
       .catch((e) => {
-        log.error(`DB Error: ${e}`)
+        error(`DB Error: ${e}`)
       })
 
     try {
-      log.debug("Linking commands...")
+      debug("Linking commands...")
       // linkCommandsOld(client);
     } catch (e) {
-      log.error("Error linking commands, exiting...")
+      error("Error linking commands, exiting...")
       process.abort()
     }
   })

@@ -34,6 +34,5 @@ export const config = {
   tsabLoggerSetting: {
     logFilePath: "", // full path from root of project
     loggingWebhook: "",
-    logLevel: "", // debug, log, warn, error
   },
 }
