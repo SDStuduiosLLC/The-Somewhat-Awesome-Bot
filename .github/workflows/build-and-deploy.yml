@@ -21,9 +21,7 @@ jobs:
           node-version: '16'
           
       - name: Install Packages
-        uses: CultureHQ/actions-yarn@master
-        with:
-          args: install --ignore-engines
+        run: npm install && npm install --global typescript ts-node @types/node
 
       - name: CI Script
         run: npm run ci
