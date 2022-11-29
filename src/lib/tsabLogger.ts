@@ -61,7 +61,7 @@ export async function debug(message: string, options?: OptionsInt) {
   )
   fs.appendFile(
     getLogFile(),
-    `${moment().format()} DEBUG | ${message}`,
+    `${moment().format()} DEBUG | ${message}\n`,
     (err) => console.error(err)
   )
 
@@ -83,7 +83,7 @@ export async function log(message: string, options?: OptionsInt) {
   process.stdout.write(
     `${moment().format()} ${chalk.green("LOG")} | ${chalk.white(message)}\n`
   )
-  fs.appendFile(getLogFile(), `${moment().format()} LOG | ${message}`, (err) =>
+  fs.appendFile(getLogFile(), `${moment().format()} LOG | ${message}\n`, (err) =>
     console.error(err)
   )
 
@@ -133,7 +133,7 @@ export async function error(message: string, options?: OptionsInt) {
   )
   fs.appendFile(
     getLogFile(),
-    `${moment().format()} ERROR | ${message}`,
+    `${moment().format()} ERROR | ${message}\n`,
     (err) => console.error(err)
   )
 
