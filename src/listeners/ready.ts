@@ -14,7 +14,7 @@ import Statcord from "statcord.js"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v10"
 
-import { debug,log,error } from '../lib/tsabLogger';
+import { debug, log, error } from "../lib/tsabLogger"
 
 const db = new QuickDB()
 const sysInternals = db.table("sysInt")
@@ -46,7 +46,7 @@ export default (client: Client, statcord: Statcord.Client): void => {
 
     const statusText = "the suffering of humanity"
     client.user.setActivity(statusText, { type: ActivityType.Watching })
-    debug(`Set custom status to ${statusText}`, { sendWebhook:true })
+    debug(`Set custom status to ${statusText}`, { sendWebhook: true })
 
     const logEmbed1 = new EmbedBuilder()
       .setTitle("Status Log")
@@ -76,8 +76,8 @@ export default (client: Client, statcord: Statcord.Client): void => {
           content: "Checking API connection.. OK",
         },
       })
-    } catch (e:any) {
-      error(`\`${e}\``, { sendWebhook:true })
+    } catch (e: any) {
+      error(`\`${e}\``, { sendWebhook: true })
     }
 
     mongoose

@@ -62,7 +62,11 @@ export async function debug(message: string, options?: OptionsInt) {
   fs.appendFile(
     getLogFile(),
     `${moment().format()} DEBUG | ${message}\n`,
-    (err) => console.error(err)
+    (err) => {
+      if (err) {
+        console.error(err)
+      }
+    }
   )
 
   if (sendWebhook) {
@@ -81,10 +85,16 @@ export async function log(message: string, options?: OptionsInt) {
   )} | ${chalk.white(message)}\n`
 
   process.stdout.write(
-    `${moment().format()} ${chalk.green("LOG")} | ${chalk.white(message)}\n`
+    `${moment().format()} ${chalk.green("LOG")}   | ${chalk.white(message)}\n`
   )
-  fs.appendFile(getLogFile(), `${moment().format()} LOG | ${message}\n`, (err) =>
-    console.error(err)
+  fs.appendFile(
+    getLogFile(),
+    `${moment().format()} LOG   | ${message}\n`,
+    (err) => {
+      if (err) {
+        console.error(err)
+      }
+    }
   )
 
   if (sendWebhook) {
@@ -103,12 +113,16 @@ export async function warn(message: string, options?: OptionsInt) {
   )} | ${chalk.white(message)}\n`
 
   process.stdout.write(
-    `${moment().format()} ${chalk.yellow("WARN")} | ${chalk.white(message)}\n`
+    `${moment().format()} ${chalk.yellow("WARN")}  | ${chalk.white(message)}\n`
   )
   fs.appendFile(
     getLogFile(),
-    `${moment().format()} "WARN" | ${message}\n`,
-    (err) => console.error(err)
+    `${moment().format()} "WARN"  | ${message}\n`,
+    (err) => {
+      if (err) {
+        console.error(err)
+      }
+    }
   )
 
   if (sendWebhook) {
@@ -134,7 +148,11 @@ export async function error(message: string, options?: OptionsInt) {
   fs.appendFile(
     getLogFile(),
     `${moment().format()} ERROR | ${message}\n`,
-    (err) => console.error(err)
+    (err) => {
+      if (err) {
+        console.error(err)
+      }
+    }
   )
 
   if (sendWebhook) {
