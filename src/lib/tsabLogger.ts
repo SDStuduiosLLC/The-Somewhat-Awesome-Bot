@@ -149,12 +149,17 @@ export async function error(message: string, options?: OptionsInt) {
  * @returns {Webhook}
  */
 async function webhookReporter(mode: string, text: string) {
+  let hook = ""
+  
   if (!config.tsabLoggerSetting.loggingWebhook) {
-    return console.error("No webhook found! Check your config!")
+    return error("No webhook found! Check your config!")
+    // TODO: add tsab internal log webhook url to default to
+  } else {
+    hook = config.tsabLoggerSetting.loggingWebhook
   }
 
   const whClient = new WebhookClient({
-    url: config.tsabLoggerSetting.loggingWebhook,
+    url: hook,
   })
 
   switch (mode) {
