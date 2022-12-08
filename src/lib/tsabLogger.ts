@@ -50,7 +50,7 @@ interface OptionsInt {
  * @param {string} message
  * @param {OptionsInt} options
  */
-export async function debug(message: string, options?: OptionsInt) {
+export function debug(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
   const localmessage = `${moment().format()} ${chalk.white(
     "DEBUG"
@@ -70,7 +70,7 @@ export async function debug(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    webhookReporter("debug", message)
+    // webhookReporter("debug", message)
   }
 }
 
@@ -78,7 +78,7 @@ export async function debug(message: string, options?: OptionsInt) {
  * @param {string} message
  * @param {OptionsInt} options
  */
-export async function log(message: string, options?: OptionsInt) {
+export function log(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
   const localmessage = `${moment().format()} ${chalk.green(
     "LOG"
@@ -98,7 +98,7 @@ export async function log(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    webhookReporter("info", message)
+    // webhookReporter("info", message)
   }
 }
 
@@ -106,7 +106,7 @@ export async function log(message: string, options?: OptionsInt) {
  * @param {string} message
  * @param {OptionsInt} options
  */
-export async function warn(message: string, options?: OptionsInt) {
+export function warn(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
   const localmessage = `${moment().format()} ${chalk.yellow(
     "WARN"
@@ -126,7 +126,7 @@ export async function warn(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    webhookReporter("warn", message)
+    // webhookReporter("warn", message)
   }
 }
 
@@ -134,7 +134,7 @@ export async function warn(message: string, options?: OptionsInt) {
  * @param {string} message
  * @param {OptionsInt} options
  */
-export async function error(message: string, options?: OptionsInt) {
+export function error(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
   const localmessage = `${moment().format()} ${chalk.redBright(
     "ERROR"
@@ -156,7 +156,7 @@ export async function error(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    webhookReporter("error", message)
+    // webhookReporter("error", message)
   }
 }
 
