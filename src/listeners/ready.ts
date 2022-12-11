@@ -5,7 +5,7 @@ import {
   Role,
   TextChannel,
 } from "discord.js"
-import { createSimpleLogger } from "simple-node-logger"
+
 import { config } from "../../data/config"
 import { checkForInfo, disclaimerCheck, webhookReporter } from "../utilities"
 import mongoose from "mongoose"
@@ -28,7 +28,7 @@ export default (client: Client, statcord: Statcord.Client): void => {
 
     await disclaimerCheck(db, sysInternals)
 
-    checkForInfo()
+    await checkForInfo()
     await statcord.autopost()
 
     log(`${client.user.tag} connected to Discord Gateway successfully`)

@@ -1,5 +1,5 @@
 import { config } from "../data/config"
-import { createSimpleLogger } from "simple-node-logger"
+
 import { QuickDB } from "quick.db"
 import { EmbedBuilder, WebhookClient } from "discord.js"
 import { debug, log, warn, error } from "./lib/tsabLogger"
