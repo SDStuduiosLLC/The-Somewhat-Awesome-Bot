@@ -10,6 +10,7 @@
     "@types/figlet": "^1.5.4",
     "@types/mongoose": "^5.11.97",
     "ascii-table3": "^0.7.7",
+    "axios": "^1.2.1",
     "better-sqlite3": "^7.6.2",
     "chalk": "^4.1.2",
     "cli-interact": "^0.1.9",

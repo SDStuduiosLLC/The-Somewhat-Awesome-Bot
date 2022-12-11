@@ -4,7 +4,8 @@ import { config } from "../../data/config"
 import moment from "moment"
 import chalk from "chalk"
 import fs from "fs"
-import { EmbedBuilder, Webhook, WebhookClient } from "discord.js"
+import {Embed, EmbedBuilder, Webhook, WebhookClient} from "discord.js"
+import axios from "axios"
 
 /**
  * Checks if a log file exists. Returns the path, and creates one if required.
@@ -52,9 +53,6 @@ interface OptionsInt {
  */
 export function debug(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
-  const localmessage = `${moment().format()} ${chalk.white(
-    "DEBUG"
-  )} | ${chalk.white(message)}\n`
 
   process.stdout.write(
     `${moment().format()} ${chalk.white("DEBUG")} | ${chalk.white(message)}\n`
@@ -70,7 +68,7 @@ export function debug(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    // webhookReporter("debug", message)
+    webhookReporter("debug", message)
   }
 }
 
@@ -80,9 +78,6 @@ export function debug(message: string, options?: OptionsInt) {
  */
 export function log(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
-  const localmessage = `${moment().format()} ${chalk.green(
-    "LOG"
-  )} | ${chalk.white(message)}\n`
 
   process.stdout.write(
     `${moment().format()} ${chalk.green("LOG")}   | ${chalk.white(message)}\n`
@@ -98,7 +93,7 @@ export function log(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    // webhookReporter("info", message)
+    webhookReporter("info", message)
   }
 }
 
@@ -108,9 +103,6 @@ export function log(message: string, options?: OptionsInt) {
  */
 export function warn(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
-  const localmessage = `${moment().format()} ${chalk.yellow(
-    "WARN"
-  )} | ${chalk.white(message)}\n`
 
   process.stdout.write(
     `${moment().format()} ${chalk.yellow("WARN")}  | ${chalk.white(message)}\n`
@@ -126,7 +118,7 @@ export function warn(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    // webhookReporter("warn", message)
+    webhookReporter("warn", message)
   }
 }
 
@@ -136,9 +128,6 @@ export function warn(message: string, options?: OptionsInt) {
  */
 export function error(message: string, options?: OptionsInt) {
   const sendWebhook = options?.sendWebhook
-  const localmessage = `${moment().format()} ${chalk.redBright(
-    "ERROR"
-  )} | ${chalk.grey(message)}\n`
 
   process.stdout.write(
     `${moment().format()} ${chalk.redBright("ERROR")} | ${chalk.grey(
@@ -156,7 +145,7 @@ export function error(message: string, options?: OptionsInt) {
   )
 
   if (sendWebhook) {
-    // webhookReporter("error", message)
+    webhookReporter("error", message)
   }
 }
 
@@ -166,7 +155,7 @@ export function error(message: string, options?: OptionsInt) {
  * @param {string} text
  * @returns {Webhook}
  */
-async function webhookReporter(mode: string, text: string) {
+function webhookReporter(mode: string, text: string) {
   let hook = ""
   
   if (!config.tsabLoggerSetting.loggingWebhook) {
@@ -180,6 +169,20 @@ async function webhookReporter(mode: string, text: string) {
     url: hook,
   })
 
+  function sendWebhook(embed: EmbedBuilder) {
+    const data = {
+      embeds: [
+          embed
+      ]
+    }
+
+    axios
+        .post(hook, data)
+        .then(res => {
+          debug(`Discord log webhook successfully executed`)
+        })
+  }
+
   switch (mode) {
     case "debug":
       const debugEmbed = new EmbedBuilder()
@@ -189,7 +192,7 @@ async function webhookReporter(mode: string, text: string) {
         .setTimestamp()
         .setFooter({ text: "TSAB Utilities" })
 
-      return await whClient.send({ embeds: [debugEmbed] })
+      return sendWebhook(debugEmbed)
 
     case "info":
       const infoEmbed = new EmbedBuilder()
@@ -199,7 +202,7 @@ async function webhookReporter(mode: string, text: string) {
         .setTimestamp()
         .setFooter({ text: "TSAB Utilities" })
 
-      return await whClient.send({ embeds: [infoEmbed] })
+      return sendWebhook(infoEmbed)
 
     case "warn":
       const warnEmbed = new EmbedBuilder()
@@ -209,7 +212,7 @@ async function webhookReporter(mode: string, text: string) {
         .setTimestamp()
         .setFooter({ text: "TSAB Utilities" })
 
-      return await whClient.send({ embeds: [warnEmbed] })
+      return sendWebhook(warnEmbed)
 
     case "error":
       const errorEmbed = new EmbedBuilder()
@@ -219,7 +222,7 @@ async function webhookReporter(mode: string, text: string) {
         .setTimestamp()
         .setFooter({ text: "TSAB Utilities" })
 
-      return await whClient.send({ embeds: [errorEmbed] })
+      return sendWebhook(errorEmbed)
 
     case "note":
       const noteEmbed = new EmbedBuilder()
@@ -229,7 +232,7 @@ async function webhookReporter(mode: string, text: string) {
         .setTimestamp()
         .setFooter({ text: "TSAB Utilities" })
 
-      return await whClient.send({ embeds: [noteEmbed] })
+      return sendWebhook(noteEmbed)
 
     default:
       return console.warn("Not a valid log type!")
