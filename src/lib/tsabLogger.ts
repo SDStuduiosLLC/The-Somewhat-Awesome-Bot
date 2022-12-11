@@ -117,7 +117,7 @@ export function warn(message: string, options?: OptionsInt) {
   )
   fs.appendFile(
     getLogFile(),
-    `${moment().format()} "WARN"  | ${message}\n`,
+    `${moment().format()} WARN  | ${message}\n`,
     (err) => {
       if (err) {
         console.error(err)
