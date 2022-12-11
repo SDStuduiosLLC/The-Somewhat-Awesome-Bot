@@ -5,7 +5,7 @@
     "rootDir": "./",
     "outDir": "./build/",
     "strict": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "importHelpers": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
@@ -18,9 +18,7 @@
     "sourceMap": true,
     "baseUrl": "./"
   },
-  "files": [
-    "src/theHeart.ts"
-  ],
+  "files": ["src/theHeart.ts"],
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "build"]
 }
