@@ -6,8 +6,7 @@ import {QuickDB} from "quick.db";
 import fs from "fs";
 
 const rest = new REST({ version: '10' }).setToken(config.discord.token);
-const log = createSimpleLogger("./data/mcb.log");
-log.setLevel('debug');
+import { debug,log,error } from '../../lib/tsabLogger';
 const db = new QuickDB();
 const sysInternals = db.table("sysInt");
 
@@ -26,13 +25,13 @@ fs.readdirSync(commandDir).forEach(file => {
     if (cmd.data) {
         commands.push(cmd.data.toJSON());
         console.log(cmd)
-        log.info(`Imported Slash Command: ${file}`);
+        log(`Imported Slash Command: ${file}`);
     }
 })
 
 console.log('Syncing commands..')
 
 rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.serverId), {body: commands})
-    .then((data:any) => log.debug(`Successfully registered ${data.length} application commands.`))
-    .catch(log.error)
+    .then((data:any) => debug(`Successfully registered ${data.length} application commands.`))
+    .catch(error)
 

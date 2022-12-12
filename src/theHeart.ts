@@ -1,18 +1,15 @@
-import { Client, GatewayIntentBits } from "discord.js";
-import { createSimpleLogger } from "simple-node-logger";
-import ready from "./listeners/ready";
-import { config } from "../data/config";
-import * as figlet from "figlet";
-import Statcord from "statcord.js";
-import tempListener from "./listeners/customListeners/temp.listener";
-import newCommandHandler from "./listeners/newCommandHandler";
-
-const log = createSimpleLogger("./data/mcb.log");
+import { Client, GatewayIntentBits } from "discord.js"
+import ready from "./listeners/ready"
+import { config } from "../data/config"
+import figlet from "figlet"
+import Statcord from "statcord.js"
+import tempListener from "./listeners/customListeners/temp.listener"
+import newCommandHandler from "./listeners/newCommandHandler"
+import { debug, log, warn, error } from "./lib/tsabLogger"
 
 figlet.text(
-  "TSAB",
+  "TSAB Framework",
   {
-    font: "Small Keyboard",
     horizontalLayout: "default",
     verticalLayout: "default",
     width: 80,
@@ -20,17 +17,18 @@ figlet.text(
   },
   function (err, data) {
     if (err) {
-      log.warn("Something went wrong...");
-      console.dir(err);
-      return;
+      warn("Something went wrong...")
+      console.dir(err)
+      return
     }
-    console.log(data);
+    console.log(data)
   }
-);
+)
 
-log.info("Built and Maintained by SDS | Please wait for all services to start...");
-log.info("Starting bot...");
-
+log(
+  "Built and Maintained by SDStudios - Please wait for all services to start..."
+)
+log("Starting bot...")
 
 const client = new Client({
   intents: [
@@ -42,7 +40,7 @@ const client = new Client({
     GatewayIntentBits.GuildMessageTyping,
     GatewayIntentBits.MessageContent,
   ],
-});
+})
 
 const statcord = new Statcord.Client({
   client,
@@ -50,29 +48,25 @@ const statcord = new Statcord.Client({
   postCpuStatistics: true,
   postMemStatistics: true,
   postNetworkStatistics: true,
-});
+})
 
-ready(client, statcord);
-// onMessageCreate(client, statcord);
-newCommandHandler(client, statcord);
+ready(client, statcord)
+newCommandHandler(client, statcord)
 
 // Custom Listeners
 tempListener(client)
 
-
 try {
-    client.login(config.discord.token).then(r => {
-        log.debug('Discord websocket connected!')
-    });
+  client.login(config.discord.token).then((r) => {
+    debug("Discord websocket connected!")
+  })
 } catch (e) {
-    log.warn('Error when connecting to Discord Gateway')
+  warn("Error when connecting to Discord Gateway", { sendWebhook: true })
 }
 
 statcord.on("post", (status: any) => {
   if (!status) {
-      log.debug("Successful post");
+  } else {
+    warn(status, { sendWebhook: true })
   }
-  else {
-      log.warn(status)
-  };
-});
+})

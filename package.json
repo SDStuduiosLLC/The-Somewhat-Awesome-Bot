@@ -2,29 +2,30 @@
   "name": "the-somewhat-decent-bot",
   "version": "2.1.4",
   "main": "src/theHeart.ts",
-  "repository": "https://github.com/summerisadev/the-somewhat-awesome-bot.git",
-  "author": "summerisadev <101482788+summerisadev@users.noreply.github.com>",
+  "repository": "https://github.com/sd-studios-official/the-somewhat-awesome-bot.git",
+  "author": "WhizBangPop <101482788+wizbangpop@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "@discordjs/rest": "^1.1.0",
     "@types/figlet": "^1.5.4",
     "@types/mongoose": "^5.11.97",
-    "@types/twit": "^2.2.30",
     "ascii-table3": "^0.7.7",
+    "axios": "^1.2.1",
     "better-sqlite3": "^7.6.2",
+    "chalk": "^4.1.2",
     "cli-interact": "^0.1.9",
     "discord-api-types": "^0.37.10",
     "discord.js": "^14.0.2",
     "dotenv": "^16.0.3",
     "figlet": "^1.5.2",
+    "moment": "^2.29.4",
     "mongoose": "^6.5.1",
     "nanospinner": "^1.1.0",
     "promise-mysql": "^5.2.0",
     "quick.db": "^9.0.5",
     "simple-node-logger": "^21.8.12",
     "statcord.js": "^3.4.3",
-    "tslib": "^2.4.0",
-    "twit": "^2.2.11"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
@@ -35,6 +36,8 @@
     "watch-dev": "nodemon src/theHeart.ts",
     "watch-dev-build": "nodemon build/src/Bot.js",
     "build": "tsc",
-    "start-prod": "tsc && node build/src/Sharding.js"
+    "start-prod": "tsc && node build/src/Sharding.js",
+    "build-docs": "tsc && jsdoc build/src",
+    "ci": "cd data && cp config.example.ts config.ts"
   }
 }

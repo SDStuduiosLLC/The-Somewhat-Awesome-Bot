@@ -1,4 +1,13 @@
-import {Message, Client, MessageInteraction, CommandInteraction, SlashCommandBuilder} from "discord.js";
+import {
+  Message,
+  Client,
+  MessageInteraction,
+  CommandInteraction,
+  SlashCommandBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+} from "discord.js"
 
 module.exports = {
   // name: "ping",
@@ -8,12 +17,10 @@ module.exports = {
   // category: 'Utility',
   // slash: true,
   data: new SlashCommandBuilder()
-      .setName('ping')
-      .setDescription('Replies with the bots latency'),
+    .setName("ping")
+    .setDescription("Replies with the bots latency"),
   async execute(ctx: CommandInteraction, client: Client) {
-    const content = `API Latency is ${Math.round(client.ws.ping)}ms`;
-
-    await ctx.reply({ content: content, ephemeral: true });
+    const content = `API Latency is ${Math.round(client.ws.ping)}ms`
+    await ctx.reply({ content: content, ephemeral: true })
   },
-
-};
+}

@@ -9,3 +9,6 @@ json.sqlite
 /src/commands/plugin.ts
 .idea/
 .fleet/
+data/config.ts
+out/
+data/tsab.log

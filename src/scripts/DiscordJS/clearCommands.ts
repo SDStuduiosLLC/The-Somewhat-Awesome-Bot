@@ -5,14 +5,13 @@ import {createSimpleLogger} from "simple-node-logger";
 import {QuickDB} from "quick.db";
 
 const rest = new REST({ version: '10' }).setToken(config.discord.token);
-const log = createSimpleLogger("./data/mcb.log");
-log.setLevel('debug');
+import { debug,error,log } from '../../lib/tsabLogger';
 const db = new QuickDB();
 const sysInternals = db.table("sysInt");
 
-log.info('Starting deletion...')
+log('Starting deletion...')
 const commands: never[] = []
 
 rest.put(Routes.applicationGuildCommands(config.discord.clientId, config.discord.serverId), {body: commands})
-    .then((data:any) => log.debug(`Successfully deleted all commands.`))
-    .catch(log.error)
+    .then((data:any) => debug(`Successfully deleted all commands.`))
+    .catch(error)
