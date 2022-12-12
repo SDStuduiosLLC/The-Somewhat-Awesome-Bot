@@ -21,7 +21,9 @@ Ok, to be honest with you, you'll need to read the docs for that. There's quite 
 ## Credits
 
 #### Contributors:
-- [Summer Henderson](https://github.com/summerisadev)
+- [SDStudios](https://github.com/sd-studios-official)
+  - [WhizBangPop](https://github.com/whizbangpop)
+- [GateLogic](https://github.com/gatelogic)
 
 #### Tutorials Used:
 - Some code in command handler from [DiscordJS Guide](https://discordjs.guide)
@@ -30,8 +32,4 @@ Ok, to be honest with you, you'll need to read the docs for that. There's quite 
 
 ## Licence
 
-Licenced under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/)
-
-
-
-i did this for 100 commits. 
+The TSAB project & it's sub-projects are licenced under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/) unless otherwise stated.
