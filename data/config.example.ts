@@ -32,7 +32,15 @@ export const config = {
     apiKey: "",
   },
   tsabLoggerSetting: {
-    logFilePath: "", // full path from root of project
+    /** File path of desired log file. Defaults to data/tsab.log if not specified or valid */
+    logFilePath: "",
+    /** Discord Webhook for sending logs to */
     loggingWebhook: "",
+  },
+  tsabApi: {
+    /** Port that the API will run on. Defaulted to 3000 */
+    apiPort: 3000,
+    /** Domain the API will be accessed through. Used for callbacks and such. Default of localhost */
+    domain: "localhost",
   },
 }
