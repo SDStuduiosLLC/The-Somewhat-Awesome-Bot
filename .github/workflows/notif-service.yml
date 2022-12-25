@@ -1,0 +1,35 @@
+name: "Notification Service"
+
+on:
+  push:
+    branches:
+      - "main"
+      
+jobs:
+  discord-notif:
+    name: "Discord Notification"
+    runs-on: "ubuntu-latest"
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: fateyan/action-discord-notifier@v1
+        with:
+          message-title: New Dev Build Released
+          webhook: ${{ secrets.TSAB_DISCORD_WEBHOOK }}
+          
+  slack-notif:
+    name: "Slack Notification"
+    runs-on: "ubuntu-latest"
+    
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_TSAB }}
+    
+    steps:
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#tsab'
+        if: always()
+      
