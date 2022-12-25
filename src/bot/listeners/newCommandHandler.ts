@@ -3,12 +3,12 @@ import { Client as SClient } from "statcord.js"
 import fs from "fs"
 import path from "path"
 import { QuickDB } from "quick.db"
-import { webhookReporter } from "../lib/utilities"
-import { config } from "../../data/config"
+import { webhookReporter } from "../../lib/utilities"
+import { config } from "../../../data/config"
 
 // const log = createSimpleLogger("./data/mcb.log")
 // log.setLevel("debug")
-import { debug, log, warn, error } from "../lib/tsabLogger"
+import { debug, log, warn, error } from "../../lib/tsabLogger"
 const db = new QuickDB()
 const sysInternals = db.table("sysInt")
 
