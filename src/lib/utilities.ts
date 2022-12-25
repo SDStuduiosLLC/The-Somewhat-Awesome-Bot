@@ -1,8 +1,8 @@
-import { config } from "../data/config"
+import { config } from "../../data/config"
 
 import { QuickDB } from "quick.db"
 import { EmbedBuilder, WebhookClient } from "discord.js"
-import { debug, log, warn, error } from "./lib/tsabLogger"
+import { debug, log, warn, error } from "./tsabLogger"
 const db = new QuickDB()
 
 /**

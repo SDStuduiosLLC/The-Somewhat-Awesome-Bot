@@ -1,11 +1,11 @@
 import { Client, GatewayIntentBits } from "discord.js"
 import ready from "./listeners/ready"
-import { config } from "../data/config"
+import { config } from "../../data/config"
 import figlet from "figlet"
 import Statcord from "statcord.js"
 import tempListener from "./listeners/customListeners/temp.listener"
 import newCommandHandler from "./listeners/newCommandHandler"
-import { debug, log, warn, error } from "./lib/tsabLogger"
+import { debug, log, warn, error } from "../lib/tsabLogger"
 
 figlet.text(
   "TSAB Framework",

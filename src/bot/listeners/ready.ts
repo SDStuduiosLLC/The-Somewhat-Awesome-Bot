@@ -7,7 +7,11 @@ import {
 } from "discord.js"
 
 import { config } from "../../data/config"
-import { checkForInfo, disclaimerCheck, webhookReporter } from "../utilities"
+import {
+  checkForInfo,
+  disclaimerCheck,
+  webhookReporter,
+} from "../lib/utilities"
 import mongoose from "mongoose"
 import { QuickDB } from "quick.db"
 import Statcord from "statcord.js"

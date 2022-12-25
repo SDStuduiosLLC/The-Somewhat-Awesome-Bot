@@ -7,7 +7,7 @@ import {
   User,
 } from "discord.js"
 import { config } from "../../data/config"
-import { checkForOwner } from "../utilities"
+import { checkForOwner } from "../lib/utilities"
 import { EmbedBuilder } from "@discordjs/builders"
 import fs from "fs"
 // @ts-ignore

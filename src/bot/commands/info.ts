@@ -1,20 +1,28 @@
-import { config } from "../../data/config"
-import {Message, Client, EmbedBuilder, Guild, Role, CommandInteraction, SlashCommandBuilder} from "discord.js"
+import { config } from "../../../data/config"
+import {
+  Message,
+  Client,
+  EmbedBuilder,
+  Guild,
+  Role,
+  CommandInteraction,
+  SlashCommandBuilder,
+} from "discord.js"
 
 module.exports = {
   data: new SlashCommandBuilder()
-      .setName('info')
-      .setDescription('Info about TSAB'),
+    .setName("info")
+    .setDescription("Info about TSAB"),
   async execute(ctx: CommandInteraction, client: Client) {
     const linkedServer = client.guilds.cache.get(
       config.discord.serverId
-    ) as Guild;
+    ) as Guild
 
     const staffRole = linkedServer.roles.cache.get(
       config.discord.staffRole
-    ) as Role;
+    ) as Role
 
-    const dateStamp = Number(client.uptime);
+    const dateStamp = Number(client.uptime)
 
     const embed = new EmbedBuilder()
       .setTitle(`Bot Info`)
@@ -28,7 +36,9 @@ module.exports = {
       .addFields(
         {
           name: " <:uptime:1010103785747660800> Uptime",
-          value: `${new Date(dateStamp).toISOString().slice(11, 19)}\nResets every 24hrs`,
+          value: `${new Date(dateStamp)
+            .toISOString()
+            .slice(11, 19)}\nResets every 24hrs`,
           inline: true,
         },
         {
@@ -47,18 +57,18 @@ module.exports = {
           value: `<#${config.discord.logChannel}>`,
           inline: true,
         },
-          {
-            name: `<:primary_owner:1010261201013440585> Primary Bot Owner`,
-            value: `<@${config.discord.botOwners[0]}>`,
-            inline: true
-          },
-          {
-              name: `<:docs:1010676727078473842> Docs`,
-              value: 'https://tsab-docs.summerdev.tk',
-              inline: true
-          }
+        {
+          name: `<:primary_owner:1010261201013440585> Primary Bot Owner`,
+          value: `<@${config.discord.botOwners[0]}>`,
+          inline: true,
+        },
+        {
+          name: `<:docs:1010676727078473842> Docs`,
+          value: "https://tsab-docs.summerdev.tk",
+          inline: true,
+        }
       )
 
-    await ctx.reply({embeds: [embed], ephemeral: true})
+    await ctx.reply({ embeds: [embed], ephemeral: true })
   },
 }
