@@ -6,15 +6,19 @@ import {
   TextChannel,
 } from "discord.js"
 
-import { config } from "../../data/config"
-import { checkForInfo, disclaimerCheck, webhookReporter } from "../utilities"
+import { config } from "../../../data/config"
+import {
+  checkForInfo,
+  disclaimerCheck,
+  webhookReporter,
+} from "../../lib/utilities"
 import mongoose from "mongoose"
 import { QuickDB } from "quick.db"
 import Statcord from "statcord.js"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v10"
 
-import { debug, log, error } from "../lib/tsabLogger"
+import { debug, log, error } from "../../lib/tsabLogger"
 
 const db = new QuickDB()
 const sysInternals = db.table("sysInt")

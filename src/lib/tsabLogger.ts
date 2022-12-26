@@ -4,8 +4,11 @@ import { config } from "../../data/config"
 import moment from "moment"
 import chalk from "chalk"
 import fs from "fs"
-import {Embed, EmbedBuilder, Webhook, WebhookClient} from "discord.js"
+import {Embed, EmbedBuilder, Webhook, WebhookClient, Routes} from "discord.js"
 import axios from "axios"
+import {REST} from '@discordjs/rest'
+
+const rest = new REST({ version: '10' }).setToken(config.discord.token)
 
 /**
  * Checks if a log file exists. Returns the path, and creates one if required.
@@ -36,6 +39,19 @@ function getLogFile() {
 
   return filePath
 }
+
+function webhookManager() {
+  function createWebhook(channelId:string) {
+
+  }
+  function checkIfExist(channelId:string) {
+    rest.get(Routes.channelWebhooks(channelId)).then(r => console.log(r))
+  }
+
+  checkIfExist('1005191616048418917')
+}
+
+webhookManager()
 
 getLogFile()
 

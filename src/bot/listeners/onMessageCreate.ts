@@ -6,15 +6,15 @@ import {
   PermissionsBitField,
   User,
 } from "discord.js"
-import { config } from "../../data/config"
-import { checkForOwner } from "../utilities"
+import { config } from "../../../data/config"
+import { checkForOwner } from "../../lib/utilities"
 import { EmbedBuilder } from "@discordjs/builders"
 import fs from "fs"
 // @ts-ignore
 import { AsciiTable3, AlignmentEnum } from "ascii-table3"
 
 // Node logger
-import { debug, log, error } from "../lib/tsabLogger"
+import { debug, log, error } from "../../lib/tsabLogger"
 
 // Automatic command importer
 const commandArray: Array<string> = []
