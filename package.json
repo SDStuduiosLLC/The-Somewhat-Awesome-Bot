@@ -6,7 +6,7 @@
   "author": "WhizBangPop <101482788+wizbangpop@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "@discordjs/rest": "^1.1.0",
+    "@discordjs/rest": "^1.4.0",
     "@types/figlet": "^1.5.4",
     "@types/mongoose": "^5.11.97",
     "ascii-table3": "^0.7.7",
