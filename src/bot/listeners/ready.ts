@@ -33,7 +33,7 @@ export default (client: Client, statcord: Statcord.Client): void => {
     await disclaimerCheck(db, sysInternals)
 
     await checkForInfo()
-    await statcord.autopost()
+    // statcord.autopost()
 
     log(`${client.user.tag} connected to Discord Gateway successfully`)
 
