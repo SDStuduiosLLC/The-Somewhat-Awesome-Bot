@@ -6,7 +6,7 @@
   "author": "WhizBangPop <101482788+wizbangpop@users.noreply.github.com>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "@discordjs/rest": "^1.1.0",
+    "@discordjs/rest": "^1.4.0",
     "@types/figlet": "^1.5.4",
     "@types/mongoose": "^5.11.97",
     "@vpriem/express-api-key-auth": "^1.1.0",
@@ -18,7 +18,7 @@
     "cli-interact": "^0.1.9",
     "cors": "^2.8.5",
     "discord-api-types": "^0.37.10",
-    "discord.js": "^14.0.2",
+    "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "figlet": "^1.5.2",
