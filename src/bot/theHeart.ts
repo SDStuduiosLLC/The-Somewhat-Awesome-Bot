@@ -6,6 +6,7 @@ import Statcord from "statcord.js"
 import tempListener from "./listeners/customListeners/temp.listener"
 import newCommandHandler from "./listeners/newCommandHandler"
 import { debug, log, warn, error } from "../lib/tsabLogger"
+import { genInviteURI } from "../lib/generateInviteURL"
 
 figlet.text(
   "TSAB Framework",
@@ -60,6 +61,7 @@ try {
   client.login(config.discord.token).then((r) => {
     debug("Discord websocket connected!")
   })
+  genInviteURI()
 } catch (e) {
   warn("Error when connecting to Discord Gateway", { sendWebhook: true })
 }
