@@ -15,7 +15,7 @@
     "chalk": "^4.1.2",
     "cli-interact": "^0.1.9",
     "discord-api-types": "^0.37.10",
-    "discord.js": "^14.0.2",
+    "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "figlet": "^1.5.2",
     "moment": "^2.29.4",

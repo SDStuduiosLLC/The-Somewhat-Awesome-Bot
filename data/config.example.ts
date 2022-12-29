@@ -24,6 +24,8 @@ export const config = {
     messageCommandsEnabled:
       false /** Toggle for message commands. Set to false by default for what should be obvious reasons. Read the DDev docs if you want more info on why. */,
     shardCount: 1, //make sure to use only a plain number, doing "1" will just crash it. also "auto" doesn't work for some reason
+    /** Discord Permissions Int */
+    permsInt: "607448176",
   },
   mongo: {
     connectionUri: "",
@@ -42,5 +44,7 @@ export const config = {
     apiPort: 3000,
     /** Domain the API will be accessed through. Used for callbacks and such. Default of localhost */
     domain: "localhost",
+    /** Authentication key used to validate requests to protected endpoints. */
+    auth: "CHANGEME!",
   },
 }
