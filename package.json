@@ -44,10 +44,10 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "watch-dev": "nodemon src/theHeart.ts",
-    "watch-dev-build": "nodemon build/src/Bot.js",
+    "watch-dev": "nodemon src/bot.ts",
+    "watch-dev-build": "nodemon build/src/bot/bot.js",
     "build": "tsc",
-    "start-prod": "tsc && node build/src/Sharding.js",
+    "start-prod": "tsc && node build/src/bot/bot.js",
     "build-docs": "tsc && jsdoc build/src",
     "ci": "cd data && cp config.example.ts config.ts"
   }

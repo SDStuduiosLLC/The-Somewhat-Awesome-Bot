@@ -18,7 +18,7 @@
     "sourceMap": true,
     "baseUrl": "./"
   },
-  "files": ["src/bot/theHeart.ts"],
+  "files": ["src/bot/bot.ts"],
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "build"]
 }

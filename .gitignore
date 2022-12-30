@@ -5,7 +5,7 @@ build/
 data/mcb.log
 testConfig.json
 json.sqlite
-/src/commands/GauntletInfo.ts
+/src/commands/gauntletInfo.ts
 /src/commands/plugin.ts
 .idea/
 .fleet/
