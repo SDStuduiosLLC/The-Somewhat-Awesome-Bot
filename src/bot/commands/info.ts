@@ -64,7 +64,7 @@ module.exports = {
         },
         {
           name: `<:docs:1010676727078473842> Docs`,
-          value: "https://tsab-docs.summerdev.tk",
+          value: "https://docs.tsab.sd-studios.ml/",
           inline: true,
         }
       )
