@@ -4,11 +4,11 @@ import { config } from "../../data/config"
 import moment from "moment"
 import chalk from "chalk"
 import fs from "fs"
-import {Embed, EmbedBuilder, Webhook, WebhookClient, Routes} from "discord.js"
+import { Embed, EmbedBuilder, Webhook, WebhookClient, Routes } from "discord.js"
 import axios from "axios"
-import {REST} from '@discordjs/rest'
+import { REST } from "@discordjs/rest"
 
-const rest = new REST({ version: '10' }).setToken(config.discord.token)
+const rest = new REST({ version: "10" }).setToken(config.discord.token)
 
 /**
  * Checks if a log file exists. Returns the path, and creates one if required.
@@ -41,14 +41,12 @@ function getLogFile() {
 }
 
 function webhookManager() {
-  function createWebhook(channelId:string) {
-
-  }
-  function checkIfExist(channelId:string) {
-    rest.get(Routes.channelWebhooks(channelId)).then(r => console.log(r))
+  function createWebhook(channelId: string) {}
+  function checkIfExist(channelId: string) {
+    rest.get(Routes.channelWebhooks(channelId)).then((r) => console.log(r))
   }
 
-  checkIfExist('1005191616048418917')
+  checkIfExist("1005191616048418917")
 }
 
 webhookManager()
@@ -173,7 +171,7 @@ export function error(message: string, options?: OptionsInt) {
  */
 function webhookReporter(mode: string, text: string) {
   let hook = ""
-  
+
   if (!config.tsabLoggerSetting.loggingWebhook) {
     return error("No webhook found! Check your config!")
     // TODO: add tsab internal log webhook url to default to
@@ -187,22 +185,18 @@ function webhookReporter(mode: string, text: string) {
 
   function sendWebhook(embed: EmbedBuilder) {
     const data = {
-      embeds: [
-          embed
-      ]
+      embeds: [embed],
     }
 
-    axios
-        .post(hook, data)
-        .then(res => {
-          debug(`Discord log webhook successfully executed`)
-        })
+    axios.post(hook, data).then((res) => {
+      debug(`Discord log webhook successfully executed`)
+    })
   }
 
   switch (mode) {
     case "debug":
       const debugEmbed = new EmbedBuilder()
-        .setTitle("Debug Log")
+        .setTitle("Debug")
         .setDescription(text)
         .setColor("Blue")
         .setTimestamp()
@@ -212,7 +206,7 @@ function webhookReporter(mode: string, text: string) {
 
     case "info":
       const infoEmbed = new EmbedBuilder()
-        .setTitle("Log Line")
+        .setTitle("Log")
         .setDescription(text)
         .setColor("#2f3136")
         .setTimestamp()
@@ -222,7 +216,7 @@ function webhookReporter(mode: string, text: string) {
 
     case "warn":
       const warnEmbed = new EmbedBuilder()
-        .setTitle("Warn Log")
+        .setTitle("Warning")
         .setDescription(text)
         .setColor("Yellow")
         .setTimestamp()
@@ -232,7 +226,7 @@ function webhookReporter(mode: string, text: string) {
 
     case "error":
       const errorEmbed = new EmbedBuilder()
-        .setTitle("Error Log")
+        .setTitle("Error")
         .setDescription(text)
         .setColor("Red")
         .setTimestamp()
