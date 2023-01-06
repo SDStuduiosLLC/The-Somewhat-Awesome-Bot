@@ -1,5 +1,8 @@
 # The Somewhat Awesome Bot
 
+## THIS PROJECT HAS MOVED!
+TSAB has moved to Bitbucket! You can find it at https://bitbucket.org/sdstudios/the-somewhat-awesome-bot/src/main/
+
 ![Discord](https://img.shields.io/discord/964238274581393418?label=Discord)
 ![GitHub issues](https://img.shields.io/github/issues/summerisadev/the-somewhat-awesome-bot)
 [![CI](https://github.com/sd-studios-official/The-Somewhat-Awesome-Bot/actions/workflows/build-and-deploy.yml/badge.svg?branch=main)](https://github.com/sd-studios-official/The-Somewhat-Awesome-Bot/actions/workflows/build-and-deploy.yml)
